@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sygs.dao.mysql.kyfkhtmx.KyfkhtmxMapper">
+  <resultMap id="BaseResultMap" type="com.sygs.pojo.mysql.kyfkhtmx.Kyfkhtmx">
+    <id column="BillNO" jdbcType="INTEGER" property="billno" />
+    <id column="EntId" jdbcType="VARCHAR" property="entid" />
+    <id column="BillSn" jdbcType="INTEGER" property="billsn" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="GoodsCode" jdbcType="VARCHAR" property="goodscode" />
+    <result column="GoodsName" jdbcType="VARCHAR" property="goodsname" />
+    <result column="GoodsSpec" jdbcType="VARCHAR" property="goodsspec" />
+    <result column="place" jdbcType="VARCHAR" property="place" />
+    <result column="Manufacturer" jdbcType="VARCHAR" property="manufacturer" />
+    <result column="Taxprice" jdbcType="DECIMAL" property="taxprice" />
+    <result column="Num" jdbcType="DECIMAL" property="num" />
+    <result column="k_qxscqkzh" jdbcType="VARCHAR" property="kQxscqkzh" />
+    <result column="RegMark" jdbcType="VARCHAR" property="regmark" />
+    <result column="Remark" jdbcType="LONGVARCHAR" property="remark" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    BillNO, EntId, BillSn, status, GoodsCode, GoodsName, GoodsSpec, place, Manufacturer, 
+    Taxprice, Num, k_qxscqkzh, RegMark, Remark, is_delete, create_date, update_date
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="com.sygs.pojo.mysql.kyfkhtmx.Kyfkhtmx" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from k_yfkhtmx
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=INTEGER}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="com.sygs.pojo.mysql.kyfkhtmx.Kyfkhtmx">
+    delete from k_yfkhtmx
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sygs.pojo.mysql.kyfkhtmx.Kyfkhtmx">
+    insert into k_yfkhtmx (BillNO, EntId, BillSn, 
+      status, GoodsCode, GoodsName, 
+      GoodsSpec, place, Manufacturer, 
+      Taxprice, Num, k_qxscqkzh, 
+      RegMark, is_delete, create_date, 
+      update_date, Remark)
+    values (#{billno,jdbcType=INTEGER}, #{entid,jdbcType=VARCHAR}, #{billsn,jdbcType=INTEGER}, 
+      #{status,jdbcType=TINYINT}, #{goodscode,jdbcType=VARCHAR}, #{goodsname,jdbcType=VARCHAR}, 
+      #{goodsspec,jdbcType=VARCHAR}, #{place,jdbcType=VARCHAR}, #{manufacturer,jdbcType=VARCHAR}, 
+      #{taxprice,jdbcType=DECIMAL}, #{num,jdbcType=DECIMAL}, #{kQxscqkzh,jdbcType=VARCHAR}, 
+      #{regmark,jdbcType=VARCHAR}, #{isDelete,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+
+  <insert id="insertForeach" parameterType="java.util.List" useGeneratedKeys="false">
+    insert into k_yfkhtmx
+    (BillNO, EntId, BillSn,
+    status, GoodsCode, GoodsName,
+    GoodsSpec, place, Manufacturer,
+    Taxprice, Num, k_qxscqkzh,
+    RegMark, is_delete, create_date,
+    update_date, Remark)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (
+      #{item.billno,jdbcType=INTEGER}, #{item.entid,jdbcType=VARCHAR}, #{item.billsn,jdbcType=INTEGER},
+      #{item.status,jdbcType=TINYINT}, #{item.goodscode,jdbcType=VARCHAR}, #{item.goodsname,jdbcType=VARCHAR},
+      #{item.goodsspec,jdbcType=VARCHAR}, #{item.place,jdbcType=VARCHAR}, #{item.manufacturer,jdbcType=VARCHAR},
+      #{item.taxprice,jdbcType=DECIMAL}, #{item.num,jdbcType=DECIMAL}, #{item.kQxscqkzh,jdbcType=VARCHAR},
+      #{item.regmark,jdbcType=VARCHAR}, #{item.isDelete,jdbcType=TINYINT}, #{item.createDate,jdbcType=TIMESTAMP},
+      #{item.updateDate,jdbcType=TIMESTAMP}, #{item.remark,jdbcType=LONGVARCHAR}
+      )
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.sygs.pojo.mysql.kyfkhtmx.Kyfkhtmx">
+    insert into k_yfkhtmx
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        BillNO,
+      </if>
+      <if test="entid != null">
+        EntId,
+      </if>
+      <if test="billsn != null">
+        BillSn,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="goodscode != null">
+        GoodsCode,
+      </if>
+      <if test="goodsname != null">
+        GoodsName,
+      </if>
+      <if test="goodsspec != null">
+        GoodsSpec,
+      </if>
+      <if test="place != null">
+        place,
+      </if>
+      <if test="manufacturer != null">
+        Manufacturer,
+      </if>
+      <if test="taxprice != null">
+        Taxprice,
+      </if>
+      <if test="num != null">
+        Num,
+      </if>
+      <if test="kQxscqkzh != null">
+        k_qxscqkzh,
+      </if>
+      <if test="regmark != null">
+        RegMark,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        #{billno,jdbcType=INTEGER},
+      </if>
+      <if test="entid != null">
+        #{entid,jdbcType=VARCHAR},
+      </if>
+      <if test="billsn != null">
+        #{billsn,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="goodscode != null">
+        #{goodscode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsname != null">
+        #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsspec != null">
+        #{goodsspec,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null">
+        #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="taxprice != null">
+        #{taxprice,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="kQxscqkzh != null">
+        #{kQxscqkzh,jdbcType=VARCHAR},
+      </if>
+      <if test="regmark != null">
+        #{regmark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sygs.pojo.mysql.kyfkhtmx.Kyfkhtmx">
+    update k_yfkhtmx
+    <set>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="goodscode != null">
+        GoodsCode = #{goodscode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsname != null">
+        GoodsName = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsspec != null">
+        GoodsSpec = #{goodsspec,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null">
+        place = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        Manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="taxprice != null">
+        Taxprice = #{taxprice,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null">
+        Num = #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="kQxscqkzh != null">
+        k_qxscqkzh = #{kQxscqkzh,jdbcType=VARCHAR},
+      </if>
+      <if test="regmark != null">
+        RegMark = #{regmark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sygs.pojo.mysql.kyfkhtmx.Kyfkhtmx">
+    update k_yfkhtmx
+    set status = #{status,jdbcType=TINYINT},
+      GoodsCode = #{goodscode,jdbcType=VARCHAR},
+      GoodsName = #{goodsname,jdbcType=VARCHAR},
+      GoodsSpec = #{goodsspec,jdbcType=VARCHAR},
+      place = #{place,jdbcType=VARCHAR},
+      Manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      Taxprice = #{taxprice,jdbcType=DECIMAL},
+      Num = #{num,jdbcType=DECIMAL},
+      k_qxscqkzh = #{kQxscqkzh,jdbcType=VARCHAR},
+      RegMark = #{regmark,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      Remark = #{remark,jdbcType=LONGVARCHAR}
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sygs.pojo.mysql.kyfkhtmx.Kyfkhtmx">
+    update k_yfkhtmx
+    set status = #{status,jdbcType=TINYINT},
+      GoodsCode = #{goodscode,jdbcType=VARCHAR},
+      GoodsName = #{goodsname,jdbcType=VARCHAR},
+      GoodsSpec = #{goodsspec,jdbcType=VARCHAR},
+      place = #{place,jdbcType=VARCHAR},
+      Manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      Taxprice = #{taxprice,jdbcType=DECIMAL},
+      Num = #{num,jdbcType=DECIMAL},
+      k_qxscqkzh = #{kQxscqkzh,jdbcType=VARCHAR},
+      RegMark = #{regmark,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=INTEGER}
+  </update>
+  <sql id="base_query">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != billno">
+         and t.BillNO = #{billno,jdbcType=INTEGER}
+      </if>
+      <if test="null != entid">
+         and t.EntId = #{entid,jdbcType=VARCHAR}
+      </if>
+      <if test="null != billsn">
+         and t.BillSn = #{billsn,jdbcType=INTEGER}
+      </if>
+      <if test="null != status">
+         and t.status = #{status,jdbcType=TINYINT}
+      </if>
+      <if test="null != goodscode">
+         and t.GoodsCode = #{goodscode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != goodsname">
+         and t.GoodsName = #{goodsname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != goodsspec">
+         and t.GoodsSpec = #{goodsspec,jdbcType=VARCHAR}
+      </if>
+      <if test="null != place">
+         and t.place = #{place,jdbcType=VARCHAR}
+      </if>
+      <if test="null != manufacturer">
+         and t.Manufacturer = #{manufacturer,jdbcType=VARCHAR}
+      </if>
+      <if test="null != taxprice">
+         and t.Taxprice = #{taxprice,jdbcType=DECIMAL}
+      </if>
+      <if test="null != num">
+         and t.Num = #{num,jdbcType=DECIMAL}
+      </if>
+      <if test="null != kQxscqkzh">
+         and t.k_qxscqkzh = #{kQxscqkzh,jdbcType=VARCHAR}
+      </if>
+      <if test="null != regmark">
+         and t.RegMark = #{regmark,jdbcType=VARCHAR}
+      </if>
+      <if test="null != isDelete">
+         and t.is_delete = #{isDelete,jdbcType=TINYINT}
+      </if>
+      <if test="null != createDate">
+         and t.create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != updateDate">
+         and t.update_date = #{updateDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != remark">
+         and t.Remark = #{remark,jdbcType=LONGVARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.sygs.pojo.mysql.kyfkhtmx.Kyfkhtmx" resultMap="BaseResultMap">
+    select t.* from k_yfkhtmx t
+    <include refid="base_query" />
+  </select>
+  <select id="list" parameterType="com.sygs.pojo.mysql.kyfkhtmx.Kyfkhtmx" resultMap="BaseResultMap">
+    select t.* from k_yfkhtmx t
+    <include refid="base_query" />
+  </select>
+</mapper>

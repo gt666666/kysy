@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sygs.dao.mysql.detailname.DetailnameMapper">
+    <resultMap id="BaseResultMap" type="com.sygs.pojo.mysql.detailname.Detailname">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="member_name" jdbcType="VARCHAR" property="memberName"/>
+        <result column="is_delete" jdbcType="BIT" property="isDelete"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="update_date" jdbcType="TIMESTAMP" property="updateDate"/>
+        <result column="mid" jdbcType="BIGINT" property="mid"/>
+        <result column="detail_table_name" jdbcType="VARCHAR" property="detailTableName"/>
+        <result column="detail_table_description" jdbcType="VARCHAR" property="detailTableDescription"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, member_name, is_delete, create_date, update_date, mid, detail_table_name
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from detail_name
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <update id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    update detail_name   set is_delete=1
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <insert id="insert" parameterType="com.sygs.pojo.mysql.detailname.Detailname">
+    insert into detail_name (id, member_name, is_delete, detail_table_description
+      create_date, update_date, mid, 
+      detail_table_name)
+    values (#{id,jdbcType=BIGINT}, #{memberName,jdbcType=VARCHAR}, #{isDelete,jdbcType=BIT},#{detailTableDescription,jdbcType=VARCHAR}
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{mid,jdbcType=BIGINT}, 
+      #{detailTableName,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.sygs.pojo.mysql.detailname.Detailname">
+        insert into detail_name
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="detailTableDescription != null">
+                detail_table_description,
+            </if>
+            <if test="memberName != null">
+                member_name,
+            </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="updateDate != null">
+                update_date,
+            </if>
+            <if test="mid != null">
+                mid,
+            </if>
+            <if test="detailTableName != null">
+                detail_table_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="detailTableDescription != null">
+                #{detailTableDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="memberName != null">
+                #{memberName,jdbcType=VARCHAR},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete,jdbcType=BIT},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mid != null">
+                #{mid,jdbcType=BIGINT},
+            </if>
+            <if test="detailTableName != null">
+                #{detailTableName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sygs.pojo.mysql.detailname.Detailname">
+        update detail_name
+        <set>
+            <if test="memberName != null">
+                member_name = #{memberName,jdbcType=VARCHAR},
+            </if>
+            <if test="detailTableDescription != null">
+                detail_table_description = #{detailTableDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete,jdbcType=BIT},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="mid != null">
+                mid = #{mid,jdbcType=BIGINT},
+            </if>
+            <if test="detailTableName != null">
+                detail_table_name = #{detailTableName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.sygs.pojo.mysql.detailname.Detailname">
+    update detail_name
+    set member_name = #{memberName,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=BIT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      mid = #{mid,jdbcType=BIGINT},
+      detail_table_name = #{detailTableName,jdbcType=VARCHAR},
+        detail_table_description = #{detailTableDescription,jdbcType=VARCHAR},
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <sql id="base_query">
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="null != id">
+                and t.id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="null != detailTableDescription">
+                and t.detail_table_description = #{detailTableDescription,jdbcType=BIGINT}
+            </if>
+
+            <if test="null != memberName">
+                and t.member_name = #{memberName,jdbcType=VARCHAR}
+            </if>
+            <if test="null != isDelete">
+                and t.is_delete = #{isDelete,jdbcType=BIT}
+            </if>
+            <if test="null != createDate">
+                and t.create_date = #{createDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="null != updateDate">
+                and t.update_date = #{updateDate,jdbcType=TIMESTAMP}
+            </if>
+            <if test="null != mid">
+                and t.mid = #{mid,jdbcType=BIGINT}
+            </if>
+            <if test="null != detailTableName">
+                and t.detail_table_name = #{detailTableName,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </sql>
+    <select id="find" parameterType="com.sygs.pojo.mysql.detailname.Detailname" resultMap="BaseResultMap">
+        select t.* from detail_name t
+        <include refid="base_query"/>
+    </select>
+    <select id="listQuery" parameterType="com.sygs.pojo.mysql.detailname.Detailname" resultMap="BaseResultMap">
+        select t.* from detail_name t
+        <include refid="base_query"/>
+    </select>
+    <select id="list" parameterType="Long" resultMap="BaseResultMap">
+    SELECT *  FROM    detail_name  WHERE  mid=#{id} AND is_delete =0
+  </select>
+
+    <update id="deleteBYMasternamePrimaryKey" parameterType="Long">
+         UPDATE      detail_name  SET  is_delete=1  WHERE  mid=#{id}
+    </update>
+
+</mapper>

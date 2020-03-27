@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sygs.dao.sqlserver.salenotesdt.SaleNotesDtSqlMapper">
+  <resultMap id="BaseResultMap" type="com.sygs.pojo.mysql.salenotesdt.SaleNotesDt">
+    <id column="BillNO" jdbcType="VARCHAR" property="billno" />
+    <id column="EntId" jdbcType="VARCHAR" property="entid" />
+    <id column="BillSn" jdbcType="VARCHAR" property="billsn" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="GoodsCode" jdbcType="VARCHAR" property="goodscode" />
+    <result column="GoodsName" jdbcType="VARCHAR" property="goodsname" />
+    <result column="GoodsSpec" jdbcType="VARCHAR" property="goodsspec" />
+    <result column="RegMark" jdbcType="VARCHAR" property="regmark" />
+    <result column="k_qxscqkzh" jdbcType="VARCHAR" property="kQxscqkzh" />
+    <result column="Manufacturer" jdbcType="VARCHAR" property="manufacturer" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="WHName" jdbcType="VARCHAR" property="whname" />
+    <result column="BatchCode" jdbcType="VARCHAR" property="batchcode" />
+    <result column="ProduceDate" jdbcType="VARCHAR" property="producedate" />
+    <result column="ValDate" jdbcType="VARCHAR" property="valdate" />
+    <result column="Rate" jdbcType="VARCHAR" property="rate" />
+    <result column="Num" jdbcType="VARCHAR" property="num" />
+    <result column="OldTaxprice" jdbcType="VARCHAR" property="oldtaxprice" />
+    <result column="NewTaxprice" jdbcType="VARCHAR" property="newtaxprice" />
+    <result column="Taxprice" jdbcType="VARCHAR" property="taxprice" />
+    <result column="k_jsj" jdbcType="VARCHAR" property="kJsj" />
+    <result column="k_NtaxCost" jdbcType="VARCHAR" property="kNtaxcost" />
+    <result column="k_OtaxCost" jdbcType="VARCHAR" property="kOtaxcost" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    BillNO, EntId, BillSn, status, GoodsCode, GoodsName, GoodsSpec, RegMark, k_qxscqkzh, 
+    Manufacturer, unit, WHName, BatchCode, ProduceDate, ValDate, Rate, Num, OldTaxprice, 
+    NewTaxprice, Taxprice, k_jsj, k_NtaxCost, k_OtaxCost, is_delete, create_date, update_date
+  </sql>
+
+  <select id="ViewOASaleNotesDt"  parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from View_OA_SaleNotesDt where billno=#{billno} AND entid=#{entid}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="com.sygs.pojo.sqlserver.salenotesdt.SaleNotesDtSql" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sale_notes_dt
+    where BillNO = #{billno,jdbcType=VARCHAR}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sygs.pojo.sqlserver.salenotesdt.SaleNotesDtSql">
+    delete from sale_notes_dt
+    where BillNO = #{billno,jdbcType=VARCHAR}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sygs.pojo.sqlserver.salenotesdt.SaleNotesDtSql">
+    insert into sale_notes_dt (BillNO, EntId, BillSn, 
+      status, GoodsCode, GoodsName, 
+      GoodsSpec, RegMark, k_qxscqkzh, 
+      Manufacturer, unit, WHName, 
+      BatchCode, ProduceDate, ValDate, 
+      Rate, Num, OldTaxprice, 
+      NewTaxprice, Taxprice, k_jsj, 
+      k_NtaxCost, k_OtaxCost, is_delete, 
+      create_date, update_date)
+    values (#{billno,jdbcType=VARCHAR}, #{entid,jdbcType=VARCHAR}, #{billsn,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{goodscode,jdbcType=VARCHAR}, #{goodsname,jdbcType=VARCHAR}, 
+      #{goodsspec,jdbcType=VARCHAR}, #{regmark,jdbcType=VARCHAR}, #{kQxscqkzh,jdbcType=VARCHAR}, 
+      #{manufacturer,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{whname,jdbcType=VARCHAR}, 
+      #{batchcode,jdbcType=VARCHAR}, #{producedate,jdbcType=VARCHAR}, #{valdate,jdbcType=VARCHAR}, 
+      #{rate,jdbcType=VARCHAR}, #{num,jdbcType=VARCHAR}, #{oldtaxprice,jdbcType=VARCHAR}, 
+      #{newtaxprice,jdbcType=VARCHAR}, #{taxprice,jdbcType=VARCHAR}, #{kJsj,jdbcType=VARCHAR}, 
+      #{kNtaxcost,jdbcType=VARCHAR}, #{kOtaxcost,jdbcType=VARCHAR}, #{isDelete,jdbcType=TINYINT}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sygs.pojo.sqlserver.salenotesdt.SaleNotesDtSql">
+    insert into sale_notes_dt
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        BillNO,
+      </if>
+      <if test="entid != null">
+        EntId,
+      </if>
+      <if test="billsn != null">
+        BillSn,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="goodscode != null">
+        GoodsCode,
+      </if>
+      <if test="goodsname != null">
+        GoodsName,
+      </if>
+      <if test="goodsspec != null">
+        GoodsSpec,
+      </if>
+      <if test="regmark != null">
+        RegMark,
+      </if>
+      <if test="kQxscqkzh != null">
+        k_qxscqkzh,
+      </if>
+      <if test="manufacturer != null">
+        Manufacturer,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="whname != null">
+        WHName,
+      </if>
+      <if test="batchcode != null">
+        BatchCode,
+      </if>
+      <if test="producedate != null">
+        ProduceDate,
+      </if>
+      <if test="valdate != null">
+        ValDate,
+      </if>
+      <if test="rate != null">
+        Rate,
+      </if>
+      <if test="num != null">
+        Num,
+      </if>
+      <if test="oldtaxprice != null">
+        OldTaxprice,
+      </if>
+      <if test="newtaxprice != null">
+        NewTaxprice,
+      </if>
+      <if test="taxprice != null">
+        Taxprice,
+      </if>
+      <if test="kJsj != null">
+        k_jsj,
+      </if>
+      <if test="kNtaxcost != null">
+        k_NtaxCost,
+      </if>
+      <if test="kOtaxcost != null">
+        k_OtaxCost,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="entid != null">
+        #{entid,jdbcType=VARCHAR},
+      </if>
+      <if test="billsn != null">
+        #{billsn,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="goodscode != null">
+        #{goodscode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsname != null">
+        #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsspec != null">
+        #{goodsspec,jdbcType=VARCHAR},
+      </if>
+      <if test="regmark != null">
+        #{regmark,jdbcType=VARCHAR},
+      </if>
+      <if test="kQxscqkzh != null">
+        #{kQxscqkzh,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="whname != null">
+        #{whname,jdbcType=VARCHAR},
+      </if>
+      <if test="batchcode != null">
+        #{batchcode,jdbcType=VARCHAR},
+      </if>
+      <if test="producedate != null">
+        #{producedate,jdbcType=VARCHAR},
+      </if>
+      <if test="valdate != null">
+        #{valdate,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="oldtaxprice != null">
+        #{oldtaxprice,jdbcType=VARCHAR},
+      </if>
+      <if test="newtaxprice != null">
+        #{newtaxprice,jdbcType=VARCHAR},
+      </if>
+      <if test="taxprice != null">
+        #{taxprice,jdbcType=VARCHAR},
+      </if>
+      <if test="kJsj != null">
+        #{kJsj,jdbcType=VARCHAR},
+      </if>
+      <if test="kNtaxcost != null">
+        #{kNtaxcost,jdbcType=VARCHAR},
+      </if>
+      <if test="kOtaxcost != null">
+        #{kOtaxcost,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sygs.pojo.sqlserver.salenotesdt.SaleNotesDtSql">
+    update sale_notes_dt
+    <set>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="goodscode != null">
+        GoodsCode = #{goodscode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsname != null">
+        GoodsName = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsspec != null">
+        GoodsSpec = #{goodsspec,jdbcType=VARCHAR},
+      </if>
+      <if test="regmark != null">
+        RegMark = #{regmark,jdbcType=VARCHAR},
+      </if>
+      <if test="kQxscqkzh != null">
+        k_qxscqkzh = #{kQxscqkzh,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        Manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="whname != null">
+        WHName = #{whname,jdbcType=VARCHAR},
+      </if>
+      <if test="batchcode != null">
+        BatchCode = #{batchcode,jdbcType=VARCHAR},
+      </if>
+      <if test="producedate != null">
+        ProduceDate = #{producedate,jdbcType=VARCHAR},
+      </if>
+      <if test="valdate != null">
+        ValDate = #{valdate,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        Rate = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        Num = #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="oldtaxprice != null">
+        OldTaxprice = #{oldtaxprice,jdbcType=VARCHAR},
+      </if>
+      <if test="newtaxprice != null">
+        NewTaxprice = #{newtaxprice,jdbcType=VARCHAR},
+      </if>
+      <if test="taxprice != null">
+        Taxprice = #{taxprice,jdbcType=VARCHAR},
+      </if>
+      <if test="kJsj != null">
+        k_jsj = #{kJsj,jdbcType=VARCHAR},
+      </if>
+      <if test="kNtaxcost != null">
+        k_NtaxCost = #{kNtaxcost,jdbcType=VARCHAR},
+      </if>
+      <if test="kOtaxcost != null">
+        k_OtaxCost = #{kOtaxcost,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where BillNO = #{billno,jdbcType=VARCHAR}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sygs.pojo.sqlserver.salenotesdt.SaleNotesDtSql">
+    update sale_notes_dt
+    set status = #{status,jdbcType=TINYINT},
+      GoodsCode = #{goodscode,jdbcType=VARCHAR},
+      GoodsName = #{goodsname,jdbcType=VARCHAR},
+      GoodsSpec = #{goodsspec,jdbcType=VARCHAR},
+      RegMark = #{regmark,jdbcType=VARCHAR},
+      k_qxscqkzh = #{kQxscqkzh,jdbcType=VARCHAR},
+      Manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      WHName = #{whname,jdbcType=VARCHAR},
+      BatchCode = #{batchcode,jdbcType=VARCHAR},
+      ProduceDate = #{producedate,jdbcType=VARCHAR},
+      ValDate = #{valdate,jdbcType=VARCHAR},
+      Rate = #{rate,jdbcType=VARCHAR},
+      Num = #{num,jdbcType=VARCHAR},
+      OldTaxprice = #{oldtaxprice,jdbcType=VARCHAR},
+      NewTaxprice = #{newtaxprice,jdbcType=VARCHAR},
+      Taxprice = #{taxprice,jdbcType=VARCHAR},
+      k_jsj = #{kJsj,jdbcType=VARCHAR},
+      k_NtaxCost = #{kNtaxcost,jdbcType=VARCHAR},
+      k_OtaxCost = #{kOtaxcost,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where BillNO = #{billno,jdbcType=VARCHAR}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=VARCHAR}
+  </update>
+  <sql id="base_query">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != billno">
+         and t.BillNO = #{billno,jdbcType=VARCHAR}
+      </if>
+      <if test="null != entid">
+         and t.EntId = #{entid,jdbcType=VARCHAR}
+      </if>
+      <if test="null != billsn">
+         and t.BillSn = #{billsn,jdbcType=VARCHAR}
+      </if>
+      <if test="null != status">
+         and t.status = #{status,jdbcType=TINYINT}
+      </if>
+      <if test="null != goodscode">
+         and t.GoodsCode = #{goodscode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != goodsname">
+         and t.GoodsName = #{goodsname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != goodsspec">
+         and t.GoodsSpec = #{goodsspec,jdbcType=VARCHAR}
+      </if>
+      <if test="null != regmark">
+         and t.RegMark = #{regmark,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kQxscqkzh">
+         and t.k_qxscqkzh = #{kQxscqkzh,jdbcType=VARCHAR}
+      </if>
+      <if test="null != manufacturer">
+         and t.Manufacturer = #{manufacturer,jdbcType=VARCHAR}
+      </if>
+      <if test="null != unit">
+         and t.unit = #{unit,jdbcType=VARCHAR}
+      </if>
+      <if test="null != whname">
+         and t.WHName = #{whname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != batchcode">
+         and t.BatchCode = #{batchcode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != producedate">
+         and t.ProduceDate = #{producedate,jdbcType=VARCHAR}
+      </if>
+      <if test="null != valdate">
+         and t.ValDate = #{valdate,jdbcType=VARCHAR}
+      </if>
+      <if test="null != rate">
+         and t.Rate = #{rate,jdbcType=VARCHAR}
+      </if>
+      <if test="null != num">
+         and t.Num = #{num,jdbcType=VARCHAR}
+      </if>
+      <if test="null != oldtaxprice">
+         and t.OldTaxprice = #{oldtaxprice,jdbcType=VARCHAR}
+      </if>
+      <if test="null != newtaxprice">
+         and t.NewTaxprice = #{newtaxprice,jdbcType=VARCHAR}
+      </if>
+      <if test="null != taxprice">
+         and t.Taxprice = #{taxprice,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kJsj">
+         and t.k_jsj = #{kJsj,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kNtaxcost">
+         and t.k_NtaxCost = #{kNtaxcost,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kOtaxcost">
+         and t.k_OtaxCost = #{kOtaxcost,jdbcType=VARCHAR}
+      </if>
+      <if test="null != isDelete">
+         and t.is_delete = #{isDelete,jdbcType=TINYINT}
+      </if>
+      <if test="null != createDate">
+         and t.create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != updateDate">
+         and t.update_date = #{updateDate,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.sygs.pojo.sqlserver.salenotesdt.SaleNotesDtSql" resultMap="BaseResultMap">
+    select t.* from sale_notes_dt t
+    <include refid="base_query" />
+  </select>
+  <select id="list" parameterType="com.sygs.pojo.sqlserver.salenotesdt.SaleNotesDtSql" resultMap="BaseResultMap">
+    select t.* from sale_notes_dt t
+    <include refid="base_query" />
+  </select>
+</mapper>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sygs.dao.mysql.mastername.MasternameMapper">
+  <resultMap id="BaseResultMap" type="com.sygs.pojo.mysql.mastername.Mastername">
+    <id column="mid" jdbcType="BIGINT" property="mid" />
+    <result column="member_name" jdbcType="VARCHAR" property="memberName" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="master_table_name" jdbcType="VARCHAR" property="masterTableName" />
+    <result column="master_table_description" jdbcType="VARCHAR" property="masterTableDescription" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mid, member_name, is_delete, create_date, update_date,master_table_name,master_table_description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from master_name
+    where mid = #{mid,jdbcType=BIGINT}
+  </select>
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    update  master_name   set is_delete=1
+    where mid = #{mid,jdbcType=BIGINT}
+  </update>
+  <insert id="insert" parameterType="com.sygs.pojo.mysql.mastername.Mastername">
+    insert into master_name (mid, member_name, is_delete,
+      create_date, update_date,
+      master_table_name,master_table_description,)
+    values (#{mid,jdbcType=BIGINT}, #{memberName,jdbcType=VARCHAR}, #{isDelete,jdbcType=BIT},
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP},
+      #{masterTableName,jdbcType=VARCHAR},#{masterTableDescription,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sygs.pojo.mysql.mastername.Mastername"   keyProperty="mid"  keyColumn="mid" useGeneratedKeys="true">
+    insert into master_name
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+      mid,
+    </if>
+      <if test="masterTableDescription != null">
+        master_table_description,
+      </if>
+
+      <if test="memberName != null">
+        member_name,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+
+      <if test="masterTableName != null">
+        master_table_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        #{mid,jdbcType=BIGINT},
+      </if>
+      <if test="masterTableDescription != null">
+        #{masterTableDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="memberName != null">
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+
+      <if test="masterTableName != null">
+        #{masterTableName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sygs.pojo.mysql.mastername.Mastername">
+    update master_name
+    <set>
+      <if test="memberName != null">
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="masterTableDescription != null">
+        master_table_description = #{masterTableDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=BIT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+
+      <if test="masterTableName != null">
+        master_table_name = #{masterTableName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mid = #{mid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sygs.pojo.mysql.mastername.Mastername">
+    update master_name
+    set member_name = #{memberName,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=BIT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      master_table_name = #{masterTableName,jdbcType=VARCHAR}
+    where mid = #{mid,jdbcType=BIGINT}
+  </update>
+  <sql id="base_query">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != mid">
+         and t.mid = #{mid,jdbcType=BIGINT}
+      </if>
+      <if test="null != mid">
+        and t.master_table_description = #{masterTableDescription,jdbcType=VARCHAR}
+      </if>
+
+      <if test="null != memberName and memberName !='' ">
+        <bind name="memberName" value="'%'+memberName+'%'"/>
+         and t.member_name LIKE #{memberName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != isDelete">
+         and t.is_delete = #{isDelete,jdbcType=BIT}
+      </if>
+      <if test="null != createDate">
+         and t.create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != updateDate">
+         and t.update_date = #{updateDate,jdbcType=TIMESTAMP}
+      </if>
+
+      <if test="null != masterTableName  and masterTableName !='' ">
+        <bind name="masterTableName" value="'%'+masterTableName+'%'"/>
+         and t.master_table_name LIKE #{masterTableName,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.sygs.pojo.mysql.mastername.Mastername" resultMap="BaseResultMap">
+    select t.* from master_name t
+    <include refid="base_query" />
+  </select>
+  <select id="list" parameterType="com.sygs.pojo.mysql.mastername.Mastername" resultMap="BaseResultMap">
+    select t.* from master_name t
+    <include refid="base_query" />
+    ORDER BY mid DESC
+  </select>
+</mapper>

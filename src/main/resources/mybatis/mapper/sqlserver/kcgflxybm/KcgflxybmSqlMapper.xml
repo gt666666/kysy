@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sygs.dao.sqlserver.kcgflxybm.KcgflxybmSqlMapper">
+  <resultMap id="BaseResultMap" type="com.sygs.pojo.mysql.kcgflxybm.Kcgflxybm">
+    <id column="BillNO" jdbcType="INTEGER" property="billno" />
+    <id column="EntId" jdbcType="VARCHAR" property="entid" />
+    <id column="BillSn" jdbcType="INTEGER" property="billsn" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="Department" jdbcType="VARCHAR" property="department" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    BillNO, EntId, BillSn, status, Department, is_delete, create_date, update_date
+  </sql>
+
+  <select id="viewOaKflxybm"  parameterType="java.util.Map" resultMap="BaseResultMap">
+    select * from   View_OA_k_flxybm where billno=#{billno} AND entid=#{entid}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="com.sygs.pojo.sqlserver.kcgflxybm.KcgflxybmSql" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from k_cgflxybm
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sygs.pojo.sqlserver.kcgflxybm.KcgflxybmSql">
+    delete from k_cgflxybm
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sygs.pojo.sqlserver.kcgflxybm.KcgflxybmSql">
+    insert into k_cgflxybm (BillNO, EntId, BillSn, 
+      status, Department, is_delete, 
+      create_date, update_date)
+    values (#{billno,jdbcType=INTEGER}, #{entid,jdbcType=VARCHAR}, #{billsn,jdbcType=INTEGER}, 
+      #{status,jdbcType=TINYINT}, #{department,jdbcType=VARCHAR}, #{isDelete,jdbcType=TINYINT}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sygs.pojo.sqlserver.kcgflxybm.KcgflxybmSql">
+    insert into k_cgflxybm
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        BillNO,
+      </if>
+      <if test="entid != null">
+        EntId,
+      </if>
+      <if test="billsn != null">
+        BillSn,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="department != null">
+        Department,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        #{billno,jdbcType=INTEGER},
+      </if>
+      <if test="entid != null">
+        #{entid,jdbcType=VARCHAR},
+      </if>
+      <if test="billsn != null">
+        #{billsn,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sygs.pojo.sqlserver.kcgflxybm.KcgflxybmSql">
+    update k_cgflxybm
+    <set>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="department != null">
+        Department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sygs.pojo.sqlserver.kcgflxybm.KcgflxybmSql">
+    update k_cgflxybm
+    set status = #{status,jdbcType=TINYINT},
+      Department = #{department,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=INTEGER}
+  </update>
+  <sql id="base_query">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != billno">
+         and t.BillNO = #{billno,jdbcType=INTEGER}
+      </if>
+      <if test="null != entid">
+         and t.EntId = #{entid,jdbcType=VARCHAR}
+      </if>
+      <if test="null != billsn">
+         and t.BillSn = #{billsn,jdbcType=INTEGER}
+      </if>
+      <if test="null != status">
+         and t.status = #{status,jdbcType=TINYINT}
+      </if>
+      <if test="null != department">
+         and t.Department = #{department,jdbcType=VARCHAR}
+      </if>
+      <if test="null != isDelete">
+         and t.is_delete = #{isDelete,jdbcType=TINYINT}
+      </if>
+      <if test="null != createDate">
+         and t.create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != updateDate">
+         and t.update_date = #{updateDate,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.sygs.pojo.sqlserver.kcgflxybm.KcgflxybmSql" resultMap="BaseResultMap">
+    select t.* from k_cgflxybm t
+    <include refid="base_query" />
+  </select>
+  <select id="list" parameterType="com.sygs.pojo.sqlserver.kcgflxybm.KcgflxybmSql" resultMap="BaseResultMap">
+    select t.* from k_cgflxybm t
+    <include refid="base_query" />
+  </select>
+</mapper>

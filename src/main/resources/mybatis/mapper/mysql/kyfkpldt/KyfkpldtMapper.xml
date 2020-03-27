@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sygs.dao.mysql.kyfkpldt.KyfkpldtMapper">
+  <resultMap id="BaseResultMap" type="com.sygs.pojo.mysql.kyfkpldt.Kyfkpldt">
+    <id column="BillNO" jdbcType="INTEGER" property="billno" />
+    <id column="EntId" jdbcType="VARCHAR" property="entid" />
+    <id column="BillSn" jdbcType="INTEGER" property="billsn" />
+    <result column="RfBillNO" jdbcType="INTEGER" property="rfbillno" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="k_isty" jdbcType="VARCHAR" property="kIsty" />
+    <result column="RfBillCode" jdbcType="VARCHAR" property="rfbillcode" />
+    <result column="BusinessCode" jdbcType="VARCHAR" property="businesscode" />
+    <result column="BusinessName" jdbcType="VARCHAR" property="businessname" />
+    <result column="k_deptid" jdbcType="VARCHAR" property="kDeptid" />
+    <result column="caozyname" jdbcType="VARCHAR" property="caozyname" />
+    <result column="k_yfye" jdbcType="DECIMAL" property="kYfye" />
+    <result column="k_kcje" jdbcType="DECIMAL" property="kKcje" />
+    <result column="Amount" jdbcType="DECIMAL" property="amount" />
+    <result column="k_paytype" jdbcType="VARCHAR" property="kPaytype" />
+    <result column="k_cgoujje" jdbcType="DECIMAL" property="kCgoujje" />
+    <result column="k_fukje" jdbcType="DECIMAL" property="kFukje" />
+    <result column="k_jxspye" jdbcType="DECIMAL" property="kJxspye" />
+    <result column="k_before90xshe" jdbcType="DECIMAL" property="kBefore90xshe" />
+    <result column="k_ywyname" jdbcType="VARCHAR" property="kYwyname" />
+    <result column="k_oldyfye" jdbcType="DECIMAL" property="kOldyfye" />
+    <result column="k_department" jdbcType="VARCHAR" property="kDepartment" />
+    <result column="Contact" jdbcType="VARCHAR" property="contact" />
+    <result column="k_maolv" jdbcType="DECIMAL" property="kMaolv" />
+    <result column="k_yfyj" jdbcType="LONGVARCHAR" property="kYfyj" />
+    <result column="Remark" jdbcType="LONGVARCHAR" property="remark" />
+    <result column="k_yj4" jdbcType="LONGVARCHAR" property="kYj4" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    BillNO, EntId, BillSn, status, k_isty, RfBillCode, BusinessCode, BusinessName, k_deptid, 
+    caozyname, k_yfye, k_kcje, Amount, k_paytype, k_cgoujje, k_fukje, k_jxspye, k_before90xshe, 
+    k_ywyname, k_oldyfye, k_department, Contact, k_maolv,   k_yfyj, Remark, k_yj4,is_delete, create_date, update_date
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="com.sygs.pojo.mysql.kyfkpldt.Kyfkpldt" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List"/>
+    from k_yfkpldt
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=INTEGER}
+  </select>
+  <insert id="insertForeach" parameterType="java.util.List" useGeneratedKeys="false">
+    insert into k_yfkpldt
+    ( BillNO, EntId, BillSn,RfBillNO,
+    status, k_isty, RfBillCode,
+    BusinessCode, BusinessName, k_deptid,
+    caozyname, k_yfye, k_kcje,
+    Amount, k_paytype, k_cgoujje,
+    k_fukje, k_jxspye, k_before90xshe,
+    k_ywyname, k_oldyfye, k_department,
+    Contact, k_maolv, is_delete,
+    create_date, update_date, k_yfyj,
+    Remark, k_yj4)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (
+      #{item.billno,jdbcType=INTEGER}, #{item.entid,jdbcType=VARCHAR}, #{item.billsn,jdbcType=INTEGER},#{item.rfbillno,jdbcType=INTEGER},
+      #{item.status,jdbcType=TINYINT}, #{item.kIsty,jdbcType=VARCHAR}, #{item.rfbillcode,jdbcType=VARCHAR},
+      #{item.businesscode,jdbcType=VARCHAR}, #{item.businessname,jdbcType=VARCHAR}, #{item.kDeptid,jdbcType=VARCHAR},
+      #{item.caozyname,jdbcType=VARCHAR}, #{item.kYfye,jdbcType=DECIMAL}, #{item.kKcje,jdbcType=DECIMAL},
+      #{item.amount,jdbcType=DECIMAL}, #{item.kPaytype,jdbcType=VARCHAR}, #{item.kCgoujje,jdbcType=DECIMAL},
+      #{item.kFukje,jdbcType=DECIMAL}, #{item.kJxspye,jdbcType=DECIMAL}, #{item.kBefore90xshe,jdbcType=DECIMAL},
+      #{item.kYwyname,jdbcType=VARCHAR}, #{item.kOldyfye,jdbcType=DECIMAL}, #{item.kDepartment,jdbcType=VARCHAR},
+      #{item.contact,jdbcType=VARCHAR}, #{item.kMaolv,jdbcType=DECIMAL}, #{item.isDelete,jdbcType=TINYINT},
+      #{item.createDate,jdbcType=TIMESTAMP}, #{item.updateDate,jdbcType=TIMESTAMP}, #{item.kYfyj,jdbcType=LONGVARCHAR},
+      #{item.remark,jdbcType=LONGVARCHAR}, #{item.kYj4,jdbcType=LONGVARCHAR}
+      )
+    </foreach>
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="com.sygs.pojo.mysql.kyfkpldt.Kyfkpldt">
+    delete from k_yfkpldt
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sygs.pojo.mysql.kyfkpldt.Kyfkpldt">
+    insert into k_yfkpldt (BillNO, EntId, BillSn, 
+      status, k_isty, RfBillCode, 
+      BusinessCode, BusinessName, k_deptid, 
+      caozyname, k_yfye, k_kcje, 
+      Amount, k_paytype, k_cgoujje, 
+      k_fukje, k_jxspye, k_before90xshe, 
+      k_ywyname, k_oldyfye, k_department, 
+      Contact, k_maolv, is_delete, 
+      create_date, update_date, k_yfyj, 
+      Remark, k_yj4)
+    values (#{billno,jdbcType=INTEGER}, #{entid,jdbcType=VARCHAR}, #{billsn,jdbcType=INTEGER}, 
+      #{status,jdbcType=TINYINT}, #{kIsty,jdbcType=VARCHAR}, #{rfbillcode,jdbcType=VARCHAR}, 
+      #{businesscode,jdbcType=VARCHAR}, #{businessname,jdbcType=VARCHAR}, #{kDeptid,jdbcType=VARCHAR}, 
+      #{caozyname,jdbcType=VARCHAR}, #{kYfye,jdbcType=DECIMAL}, #{kKcje,jdbcType=DECIMAL}, 
+      #{amount,jdbcType=DECIMAL}, #{kPaytype,jdbcType=VARCHAR}, #{kCgoujje,jdbcType=DECIMAL}, 
+      #{kFukje,jdbcType=DECIMAL}, #{kJxspye,jdbcType=DECIMAL}, #{kBefore90xshe,jdbcType=DECIMAL}, 
+      #{kYwyname,jdbcType=VARCHAR}, #{kOldyfye,jdbcType=DECIMAL}, #{kDepartment,jdbcType=VARCHAR}, 
+      #{contact,jdbcType=VARCHAR}, #{kMaolv,jdbcType=DECIMAL}, #{isDelete,jdbcType=TINYINT}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{kYfyj,jdbcType=LONGVARCHAR}, 
+      #{remark,jdbcType=LONGVARCHAR}, #{kYj4,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sygs.pojo.mysql.kyfkpldt.Kyfkpldt">
+    insert into k_yfkpldt
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        BillNO,
+      </if>
+      <if test="entid != null">
+        EntId,
+      </if>
+      <if test="billsn != null">
+        BillSn,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="kIsty != null">
+        k_isty,
+      </if>
+      <if test="rfbillcode != null">
+        RfBillCode,
+      </if>
+      <if test="businesscode != null">
+        BusinessCode,
+      </if>
+      <if test="businessname != null">
+        BusinessName,
+      </if>
+      <if test="kDeptid != null">
+        k_deptid,
+      </if>
+      <if test="caozyname != null">
+        caozyname,
+      </if>
+      <if test="kYfye != null">
+        k_yfye,
+      </if>
+      <if test="kKcje != null">
+        k_kcje,
+      </if>
+      <if test="amount != null">
+        Amount,
+      </if>
+      <if test="kPaytype != null">
+        k_paytype,
+      </if>
+      <if test="kCgoujje != null">
+        k_cgoujje,
+      </if>
+      <if test="kFukje != null">
+        k_fukje,
+      </if>
+      <if test="kJxspye != null">
+        k_jxspye,
+      </if>
+      <if test="kBefore90xshe != null">
+        k_before90xshe,
+      </if>
+      <if test="kYwyname != null">
+        k_ywyname,
+      </if>
+      <if test="kOldyfye != null">
+        k_oldyfye,
+      </if>
+      <if test="kDepartment != null">
+        k_department,
+      </if>
+      <if test="contact != null">
+        Contact,
+      </if>
+      <if test="kMaolv != null">
+        k_maolv,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="kYfyj != null">
+        k_yfyj,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="kYj4 != null">
+        k_yj4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        #{billno,jdbcType=INTEGER},
+      </if>
+      <if test="entid != null">
+        #{entid,jdbcType=VARCHAR},
+      </if>
+      <if test="billsn != null">
+        #{billsn,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="kIsty != null">
+        #{kIsty,jdbcType=VARCHAR},
+      </if>
+      <if test="rfbillcode != null">
+        #{rfbillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="businesscode != null">
+        #{businesscode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessname != null">
+        #{businessname,jdbcType=VARCHAR},
+      </if>
+      <if test="kDeptid != null">
+        #{kDeptid,jdbcType=VARCHAR},
+      </if>
+      <if test="caozyname != null">
+        #{caozyname,jdbcType=VARCHAR},
+      </if>
+      <if test="kYfye != null">
+        #{kYfye,jdbcType=DECIMAL},
+      </if>
+      <if test="kKcje != null">
+        #{kKcje,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="kPaytype != null">
+        #{kPaytype,jdbcType=VARCHAR},
+      </if>
+      <if test="kCgoujje != null">
+        #{kCgoujje,jdbcType=DECIMAL},
+      </if>
+      <if test="kFukje != null">
+        #{kFukje,jdbcType=DECIMAL},
+      </if>
+      <if test="kJxspye != null">
+        #{kJxspye,jdbcType=DECIMAL},
+      </if>
+      <if test="kBefore90xshe != null">
+        #{kBefore90xshe,jdbcType=DECIMAL},
+      </if>
+      <if test="kYwyname != null">
+        #{kYwyname,jdbcType=VARCHAR},
+      </if>
+      <if test="kOldyfye != null">
+        #{kOldyfye,jdbcType=DECIMAL},
+      </if>
+      <if test="kDepartment != null">
+        #{kDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="kMaolv != null">
+        #{kMaolv,jdbcType=DECIMAL},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="kYfyj != null">
+        #{kYfyj,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="kYj4 != null">
+        #{kYj4,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sygs.pojo.mysql.kyfkpldt.Kyfkpldt">
+    update k_yfkpldt
+    <set>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="kIsty != null">
+        k_isty = #{kIsty,jdbcType=VARCHAR},
+      </if>
+      <if test="rfbillcode != null">
+        RfBillCode = #{rfbillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="businesscode != null">
+        BusinessCode = #{businesscode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessname != null">
+        BusinessName = #{businessname,jdbcType=VARCHAR},
+      </if>
+      <if test="kDeptid != null">
+        k_deptid = #{kDeptid,jdbcType=VARCHAR},
+      </if>
+      <if test="caozyname != null">
+        caozyname = #{caozyname,jdbcType=VARCHAR},
+      </if>
+      <if test="kYfye != null">
+        k_yfye = #{kYfye,jdbcType=DECIMAL},
+      </if>
+      <if test="kKcje != null">
+        k_kcje = #{kKcje,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        Amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="kPaytype != null">
+        k_paytype = #{kPaytype,jdbcType=VARCHAR},
+      </if>
+      <if test="kCgoujje != null">
+        k_cgoujje = #{kCgoujje,jdbcType=DECIMAL},
+      </if>
+      <if test="kFukje != null">
+        k_fukje = #{kFukje,jdbcType=DECIMAL},
+      </if>
+      <if test="kJxspye != null">
+        k_jxspye = #{kJxspye,jdbcType=DECIMAL},
+      </if>
+      <if test="kBefore90xshe != null">
+        k_before90xshe = #{kBefore90xshe,jdbcType=DECIMAL},
+      </if>
+      <if test="kYwyname != null">
+        k_ywyname = #{kYwyname,jdbcType=VARCHAR},
+      </if>
+      <if test="kOldyfye != null">
+        k_oldyfye = #{kOldyfye,jdbcType=DECIMAL},
+      </if>
+      <if test="kDepartment != null">
+        k_department = #{kDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        Contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="kMaolv != null">
+        k_maolv = #{kMaolv,jdbcType=DECIMAL},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="kYfyj != null">
+        k_yfyj = #{kYfyj,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="kYj4 != null">
+        k_yj4 = #{kYj4,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sygs.pojo.mysql.kyfkpldt.Kyfkpldt">
+    update k_yfkpldt
+    set status = #{status,jdbcType=TINYINT},
+      k_isty = #{kIsty,jdbcType=VARCHAR},
+      RfBillCode = #{rfbillcode,jdbcType=VARCHAR},
+      BusinessCode = #{businesscode,jdbcType=VARCHAR},
+      BusinessName = #{businessname,jdbcType=VARCHAR},
+      k_deptid = #{kDeptid,jdbcType=VARCHAR},
+      caozyname = #{caozyname,jdbcType=VARCHAR},
+      k_yfye = #{kYfye,jdbcType=DECIMAL},
+      k_kcje = #{kKcje,jdbcType=DECIMAL},
+      Amount = #{amount,jdbcType=DECIMAL},
+      k_paytype = #{kPaytype,jdbcType=VARCHAR},
+      k_cgoujje = #{kCgoujje,jdbcType=DECIMAL},
+      k_fukje = #{kFukje,jdbcType=DECIMAL},
+      k_jxspye = #{kJxspye,jdbcType=DECIMAL},
+      k_before90xshe = #{kBefore90xshe,jdbcType=DECIMAL},
+      k_ywyname = #{kYwyname,jdbcType=VARCHAR},
+      k_oldyfye = #{kOldyfye,jdbcType=DECIMAL},
+      k_department = #{kDepartment,jdbcType=VARCHAR},
+      Contact = #{contact,jdbcType=VARCHAR},
+      k_maolv = #{kMaolv,jdbcType=DECIMAL},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      k_yfyj = #{kYfyj,jdbcType=LONGVARCHAR},
+      Remark = #{remark,jdbcType=LONGVARCHAR},
+      k_yj4 = #{kYj4,jdbcType=LONGVARCHAR}
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sygs.pojo.mysql.kyfkpldt.Kyfkpldt">
+    update k_yfkpldt
+    set status = #{status,jdbcType=TINYINT},
+      k_isty = #{kIsty,jdbcType=VARCHAR},
+      RfBillCode = #{rfbillcode,jdbcType=VARCHAR},
+      BusinessCode = #{businesscode,jdbcType=VARCHAR},
+      BusinessName = #{businessname,jdbcType=VARCHAR},
+      k_deptid = #{kDeptid,jdbcType=VARCHAR},
+      caozyname = #{caozyname,jdbcType=VARCHAR},
+      k_yfye = #{kYfye,jdbcType=DECIMAL},
+      k_kcje = #{kKcje,jdbcType=DECIMAL},
+      Amount = #{amount,jdbcType=DECIMAL},
+      k_paytype = #{kPaytype,jdbcType=VARCHAR},
+      k_cgoujje = #{kCgoujje,jdbcType=DECIMAL},
+      k_fukje = #{kFukje,jdbcType=DECIMAL},
+      k_jxspye = #{kJxspye,jdbcType=DECIMAL},
+      k_before90xshe = #{kBefore90xshe,jdbcType=DECIMAL},
+      k_ywyname = #{kYwyname,jdbcType=VARCHAR},
+      k_oldyfye = #{kOldyfye,jdbcType=DECIMAL},
+      k_department = #{kDepartment,jdbcType=VARCHAR},
+      Contact = #{contact,jdbcType=VARCHAR},
+      k_maolv = #{kMaolv,jdbcType=DECIMAL},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+      and BillSn = #{billsn,jdbcType=INTEGER}
+  </update>
+  <sql id="base_query">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != billno">
+         and t.BillNO = #{billno,jdbcType=INTEGER}
+      </if>
+      <if test="null != entid">
+         and t.EntId = #{entid,jdbcType=VARCHAR}
+      </if>
+      <if test="null != billsn">
+         and t.BillSn = #{billsn,jdbcType=INTEGER}
+      </if>
+      <if test="null != status">
+         and t.status = #{status,jdbcType=TINYINT}
+      </if>
+      <if test="null != kIsty">
+         and t.k_isty = #{kIsty,jdbcType=VARCHAR}
+      </if>
+      <if test="null != rfbillcode">
+         and t.RfBillCode = #{rfbillcode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != businesscode">
+         and t.BusinessCode = #{businesscode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != businessname">
+         and t.BusinessName = #{businessname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kDeptid">
+         and t.k_deptid = #{kDeptid,jdbcType=VARCHAR}
+      </if>
+      <if test="null != caozyname">
+         and t.caozyname = #{caozyname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kYfye">
+         and t.k_yfye = #{kYfye,jdbcType=DECIMAL}
+      </if>
+      <if test="null != kKcje">
+         and t.k_kcje = #{kKcje,jdbcType=DECIMAL}
+      </if>
+      <if test="null != amount">
+         and t.Amount = #{amount,jdbcType=DECIMAL}
+      </if>
+      <if test="null != kPaytype">
+         and t.k_paytype = #{kPaytype,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kCgoujje">
+         and t.k_cgoujje = #{kCgoujje,jdbcType=DECIMAL}
+      </if>
+      <if test="null != kFukje">
+         and t.k_fukje = #{kFukje,jdbcType=DECIMAL}
+      </if>
+      <if test="null != kJxspye">
+         and t.k_jxspye = #{kJxspye,jdbcType=DECIMAL}
+      </if>
+      <if test="null != kBefore90xshe">
+         and t.k_before90xshe = #{kBefore90xshe,jdbcType=DECIMAL}
+      </if>
+      <if test="null != kYwyname">
+         and t.k_ywyname = #{kYwyname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kOldyfye">
+         and t.k_oldyfye = #{kOldyfye,jdbcType=DECIMAL}
+      </if>
+      <if test="null != kDepartment">
+         and t.k_department = #{kDepartment,jdbcType=VARCHAR}
+      </if>
+      <if test="null != contact">
+         and t.Contact = #{contact,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kMaolv">
+         and t.k_maolv = #{kMaolv,jdbcType=DECIMAL}
+      </if>
+      <if test="null != isDelete">
+         and t.is_delete = #{isDelete,jdbcType=TINYINT}
+      </if>
+      <if test="null != createDate">
+         and t.create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != updateDate">
+         and t.update_date = #{updateDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != kYfyj">
+         and t.k_yfyj = #{kYfyj,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="null != remark">
+         and t.Remark = #{remark,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="null != kYj4">
+         and t.k_yj4 = #{kYj4,jdbcType=LONGVARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.sygs.pojo.mysql.kyfkpldt.Kyfkpldt" resultMap="BaseResultMap">
+    select t.* from k_yfkpldt t
+    <include refid="base_query" />
+  </select>
+  <select id="list" parameterType="com.sygs.pojo.mysql.kyfkpldt.Kyfkpldt" resultMap="BaseResultMap">
+    select t.* from k_yfkpldt t
+    <include refid="base_query" />
+  </select>
+</mapper>

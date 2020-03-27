@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sygs.dao.sqlserver.kxsflxymt.KxsflxymtSqlMapper">
+  <resultMap id="BaseResultMap" type="com.sygs.pojo.mysql.kxsflxymt.Kxsflxymt">
+    <id column="BillNO" jdbcType="INTEGER" property="billno" />
+    <id column="EntId" jdbcType="VARCHAR" property="entid" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="BillCode" jdbcType="VARCHAR" property="billcode" />
+    <result column="Dates" jdbcType="VARCHAR" property="dates" />
+    <result column="OnTime" jdbcType="VARCHAR" property="ontime" />
+    <result column="StartDate" jdbcType="VARCHAR" property="startdate" />
+    <result column="EndDate" jdbcType="VARCHAR" property="enddate" />
+    <result column="BusinessCode" jdbcType="VARCHAR" property="businesscode" />
+    <result column="BusinessName" jdbcType="VARCHAR" property="businessname" />
+    <result column="caozyname" jdbcType="VARCHAR" property="caozyname" />
+    <result column="k_department" jdbcType="VARCHAR" property="kDepartment" />
+    <result column="k_zhangqilx" jdbcType="VARCHAR" property="kZhangqilx" />
+    <result column="k_xyh" jdbcType="VARCHAR" property="kXyh" />
+    <result column="k_xsxylx" jdbcType="VARCHAR" property="kXsxylx" />
+    <result column="k_bwamount" jdbcType="DECIMAL" property="kBwamount" />
+    <result column="k_dxfs" jdbcType="VARCHAR" property="kDxfs" />
+    <result column="k_jslx" jdbcType="VARCHAR" property="kJslx" />
+    <result column="k_qskj" jdbcType="VARCHAR" property="kQskj" />
+    <result column="k_numamount" jdbcType="VARCHAR" property="kNumamount" />
+    <result column="k_Taxtypes" jdbcType="VARCHAR" property="kTaxtypes" />
+    <result column="k_flgz" jdbcType="VARCHAR" property="kFlgz" />
+    <result column="k_lxtype" jdbcType="VARCHAR" property="kLxtype" />
+    <result column="k_xyjsrq" jdbcType="VARCHAR" property="kXyjsrq" />
+    <result column="k_rwl" jdbcType="DECIMAL" property="kRwl" />
+    <result column="is_rwl" jdbcType="VARCHAR" property="isRwl" />
+    <result column="is_zq" jdbcType="VARCHAR" property="isZq" />
+    <result column="yd_bl" jdbcType="DECIMAL" property="ydBl" />
+    <result column="nd_bl" jdbcType="DECIMAL" property="ndBl" />
+    <result column="bl" jdbcType="DECIMAL" property="bl" />
+    <result column="RebAmt" jdbcType="DECIMAL" property="rebamt" />
+    <result column="k_zcbz" jdbcType="VARCHAR" property="kZcbz" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    BillNO, EntId, status, BillCode, Dates, OnTime, StartDate, EndDate, BusinessCode, 
+    BusinessName, caozyname, k_department, k_zhangqilx, k_xyh, k_xsxylx, k_bwamount, 
+    k_dxfs, k_jslx, k_qskj, k_numamount, k_Taxtypes, k_flgz, k_lxtype, k_xyjsrq, k_rwl, 
+    is_rwl, is_zq, yd_bl, nd_bl, bl, RebAmt, k_zcbz, is_delete, create_date, update_date
+  </sql>
+
+  <select id="viewOaKxyflmt"  parameterType="java.util.Map" resultMap="BaseResultMap">
+    select * from View_OA_k_xyflmt where billno=#{billno} AND entid=#{entid}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="com.sygs.pojo.sqlserver.kxsflxymt.KxsflxymtSql" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from k_xsflxymt
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sygs.pojo.sqlserver.kxsflxymt.KxsflxymtSql">
+    delete from k_xsflxymt
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sygs.pojo.sqlserver.kxsflxymt.KxsflxymtSql">
+    insert into k_xsflxymt (BillNO, EntId, status, 
+      BillCode, Dates, OnTime, 
+      StartDate, EndDate, BusinessCode, 
+      BusinessName, caozyname, k_department, 
+      k_zhangqilx, k_xyh, k_xsxylx, 
+      k_bwamount, k_dxfs, k_jslx, 
+      k_qskj, k_numamount, k_Taxtypes, 
+      k_flgz, k_lxtype, k_xyjsrq, 
+      k_rwl, is_rwl, is_zq, 
+      yd_bl, nd_bl, bl, RebAmt, 
+      is_delete, create_date, update_date, 
+      k_zcbz)
+    values (#{billno,jdbcType=INTEGER}, #{entid,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{billcode,jdbcType=VARCHAR}, #{dates,jdbcType=VARCHAR}, #{ontime,jdbcType=VARCHAR}, 
+      #{startdate,jdbcType=VARCHAR}, #{enddate,jdbcType=VARCHAR}, #{businesscode,jdbcType=VARCHAR}, 
+      #{businessname,jdbcType=VARCHAR}, #{caozyname,jdbcType=VARCHAR}, #{kDepartment,jdbcType=VARCHAR}, 
+      #{kZhangqilx,jdbcType=VARCHAR}, #{kXyh,jdbcType=VARCHAR}, #{kXsxylx,jdbcType=VARCHAR}, 
+      #{kBwamount,jdbcType=DECIMAL}, #{kDxfs,jdbcType=VARCHAR}, #{kJslx,jdbcType=VARCHAR}, 
+      #{kQskj,jdbcType=VARCHAR}, #{kNumamount,jdbcType=VARCHAR}, #{kTaxtypes,jdbcType=VARCHAR}, 
+      #{kFlgz,jdbcType=VARCHAR}, #{kLxtype,jdbcType=VARCHAR}, #{kXyjsrq,jdbcType=VARCHAR}, 
+      #{kRwl,jdbcType=DECIMAL}, #{isRwl,jdbcType=VARCHAR}, #{isZq,jdbcType=VARCHAR}, 
+      #{ydBl,jdbcType=DECIMAL}, #{ndBl,jdbcType=DECIMAL}, #{bl,jdbcType=DECIMAL}, #{rebamt,jdbcType=DECIMAL}, 
+      #{isDelete,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{kZcbz,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sygs.pojo.sqlserver.kxsflxymt.KxsflxymtSql">
+    insert into k_xsflxymt
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        BillNO,
+      </if>
+      <if test="entid != null">
+        EntId,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="billcode != null">
+        BillCode,
+      </if>
+      <if test="dates != null">
+        Dates,
+      </if>
+      <if test="ontime != null">
+        OnTime,
+      </if>
+      <if test="startdate != null">
+        StartDate,
+      </if>
+      <if test="enddate != null">
+        EndDate,
+      </if>
+      <if test="businesscode != null">
+        BusinessCode,
+      </if>
+      <if test="businessname != null">
+        BusinessName,
+      </if>
+      <if test="caozyname != null">
+        caozyname,
+      </if>
+      <if test="kDepartment != null">
+        k_department,
+      </if>
+      <if test="kZhangqilx != null">
+        k_zhangqilx,
+      </if>
+      <if test="kXyh != null">
+        k_xyh,
+      </if>
+      <if test="kXsxylx != null">
+        k_xsxylx,
+      </if>
+      <if test="kBwamount != null">
+        k_bwamount,
+      </if>
+      <if test="kDxfs != null">
+        k_dxfs,
+      </if>
+      <if test="kJslx != null">
+        k_jslx,
+      </if>
+      <if test="kQskj != null">
+        k_qskj,
+      </if>
+      <if test="kNumamount != null">
+        k_numamount,
+      </if>
+      <if test="kTaxtypes != null">
+        k_Taxtypes,
+      </if>
+      <if test="kFlgz != null">
+        k_flgz,
+      </if>
+      <if test="kLxtype != null">
+        k_lxtype,
+      </if>
+      <if test="kXyjsrq != null">
+        k_xyjsrq,
+      </if>
+      <if test="kRwl != null">
+        k_rwl,
+      </if>
+      <if test="isRwl != null">
+        is_rwl,
+      </if>
+      <if test="isZq != null">
+        is_zq,
+      </if>
+      <if test="ydBl != null">
+        yd_bl,
+      </if>
+      <if test="ndBl != null">
+        nd_bl,
+      </if>
+      <if test="bl != null">
+        bl,
+      </if>
+      <if test="rebamt != null">
+        RebAmt,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="kZcbz != null">
+        k_zcbz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        #{billno,jdbcType=INTEGER},
+      </if>
+      <if test="entid != null">
+        #{entid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="billcode != null">
+        #{billcode,jdbcType=VARCHAR},
+      </if>
+      <if test="dates != null">
+        #{dates,jdbcType=VARCHAR},
+      </if>
+      <if test="ontime != null">
+        #{ontime,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null">
+        #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="businesscode != null">
+        #{businesscode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessname != null">
+        #{businessname,jdbcType=VARCHAR},
+      </if>
+      <if test="caozyname != null">
+        #{caozyname,jdbcType=VARCHAR},
+      </if>
+      <if test="kDepartment != null">
+        #{kDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="kZhangqilx != null">
+        #{kZhangqilx,jdbcType=VARCHAR},
+      </if>
+      <if test="kXyh != null">
+        #{kXyh,jdbcType=VARCHAR},
+      </if>
+      <if test="kXsxylx != null">
+        #{kXsxylx,jdbcType=VARCHAR},
+      </if>
+      <if test="kBwamount != null">
+        #{kBwamount,jdbcType=DECIMAL},
+      </if>
+      <if test="kDxfs != null">
+        #{kDxfs,jdbcType=VARCHAR},
+      </if>
+      <if test="kJslx != null">
+        #{kJslx,jdbcType=VARCHAR},
+      </if>
+      <if test="kQskj != null">
+        #{kQskj,jdbcType=VARCHAR},
+      </if>
+      <if test="kNumamount != null">
+        #{kNumamount,jdbcType=VARCHAR},
+      </if>
+      <if test="kTaxtypes != null">
+        #{kTaxtypes,jdbcType=VARCHAR},
+      </if>
+      <if test="kFlgz != null">
+        #{kFlgz,jdbcType=VARCHAR},
+      </if>
+      <if test="kLxtype != null">
+        #{kLxtype,jdbcType=VARCHAR},
+      </if>
+      <if test="kXyjsrq != null">
+        #{kXyjsrq,jdbcType=VARCHAR},
+      </if>
+      <if test="kRwl != null">
+        #{kRwl,jdbcType=DECIMAL},
+      </if>
+      <if test="isRwl != null">
+        #{isRwl,jdbcType=VARCHAR},
+      </if>
+      <if test="isZq != null">
+        #{isZq,jdbcType=VARCHAR},
+      </if>
+      <if test="ydBl != null">
+        #{ydBl,jdbcType=DECIMAL},
+      </if>
+      <if test="ndBl != null">
+        #{ndBl,jdbcType=DECIMAL},
+      </if>
+      <if test="bl != null">
+        #{bl,jdbcType=DECIMAL},
+      </if>
+      <if test="rebamt != null">
+        #{rebamt,jdbcType=DECIMAL},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="kZcbz != null">
+        #{kZcbz,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sygs.pojo.sqlserver.kxsflxymt.KxsflxymtSql">
+    update k_xsflxymt
+    <set>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="billcode != null">
+        BillCode = #{billcode,jdbcType=VARCHAR},
+      </if>
+      <if test="dates != null">
+        Dates = #{dates,jdbcType=VARCHAR},
+      </if>
+      <if test="ontime != null">
+        OnTime = #{ontime,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null">
+        StartDate = #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="enddate != null">
+        EndDate = #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="businesscode != null">
+        BusinessCode = #{businesscode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessname != null">
+        BusinessName = #{businessname,jdbcType=VARCHAR},
+      </if>
+      <if test="caozyname != null">
+        caozyname = #{caozyname,jdbcType=VARCHAR},
+      </if>
+      <if test="kDepartment != null">
+        k_department = #{kDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="kZhangqilx != null">
+        k_zhangqilx = #{kZhangqilx,jdbcType=VARCHAR},
+      </if>
+      <if test="kXyh != null">
+        k_xyh = #{kXyh,jdbcType=VARCHAR},
+      </if>
+      <if test="kXsxylx != null">
+        k_xsxylx = #{kXsxylx,jdbcType=VARCHAR},
+      </if>
+      <if test="kBwamount != null">
+        k_bwamount = #{kBwamount,jdbcType=DECIMAL},
+      </if>
+      <if test="kDxfs != null">
+        k_dxfs = #{kDxfs,jdbcType=VARCHAR},
+      </if>
+      <if test="kJslx != null">
+        k_jslx = #{kJslx,jdbcType=VARCHAR},
+      </if>
+      <if test="kQskj != null">
+        k_qskj = #{kQskj,jdbcType=VARCHAR},
+      </if>
+      <if test="kNumamount != null">
+        k_numamount = #{kNumamount,jdbcType=VARCHAR},
+      </if>
+      <if test="kTaxtypes != null">
+        k_Taxtypes = #{kTaxtypes,jdbcType=VARCHAR},
+      </if>
+      <if test="kFlgz != null">
+        k_flgz = #{kFlgz,jdbcType=VARCHAR},
+      </if>
+      <if test="kLxtype != null">
+        k_lxtype = #{kLxtype,jdbcType=VARCHAR},
+      </if>
+      <if test="kXyjsrq != null">
+        k_xyjsrq = #{kXyjsrq,jdbcType=VARCHAR},
+      </if>
+      <if test="kRwl != null">
+        k_rwl = #{kRwl,jdbcType=DECIMAL},
+      </if>
+      <if test="isRwl != null">
+        is_rwl = #{isRwl,jdbcType=VARCHAR},
+      </if>
+      <if test="isZq != null">
+        is_zq = #{isZq,jdbcType=VARCHAR},
+      </if>
+      <if test="ydBl != null">
+        yd_bl = #{ydBl,jdbcType=DECIMAL},
+      </if>
+      <if test="ndBl != null">
+        nd_bl = #{ndBl,jdbcType=DECIMAL},
+      </if>
+      <if test="bl != null">
+        bl = #{bl,jdbcType=DECIMAL},
+      </if>
+      <if test="rebamt != null">
+        RebAmt = #{rebamt,jdbcType=DECIMAL},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="kZcbz != null">
+        k_zcbz = #{kZcbz,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sygs.pojo.sqlserver.kxsflxymt.KxsflxymtSql">
+    update k_xsflxymt
+    set status = #{status,jdbcType=TINYINT},
+      BillCode = #{billcode,jdbcType=VARCHAR},
+      Dates = #{dates,jdbcType=VARCHAR},
+      OnTime = #{ontime,jdbcType=VARCHAR},
+      StartDate = #{startdate,jdbcType=VARCHAR},
+      EndDate = #{enddate,jdbcType=VARCHAR},
+      BusinessCode = #{businesscode,jdbcType=VARCHAR},
+      BusinessName = #{businessname,jdbcType=VARCHAR},
+      caozyname = #{caozyname,jdbcType=VARCHAR},
+      k_department = #{kDepartment,jdbcType=VARCHAR},
+      k_zhangqilx = #{kZhangqilx,jdbcType=VARCHAR},
+      k_xyh = #{kXyh,jdbcType=VARCHAR},
+      k_xsxylx = #{kXsxylx,jdbcType=VARCHAR},
+      k_bwamount = #{kBwamount,jdbcType=DECIMAL},
+      k_dxfs = #{kDxfs,jdbcType=VARCHAR},
+      k_jslx = #{kJslx,jdbcType=VARCHAR},
+      k_qskj = #{kQskj,jdbcType=VARCHAR},
+      k_numamount = #{kNumamount,jdbcType=VARCHAR},
+      k_Taxtypes = #{kTaxtypes,jdbcType=VARCHAR},
+      k_flgz = #{kFlgz,jdbcType=VARCHAR},
+      k_lxtype = #{kLxtype,jdbcType=VARCHAR},
+      k_xyjsrq = #{kXyjsrq,jdbcType=VARCHAR},
+      k_rwl = #{kRwl,jdbcType=DECIMAL},
+      is_rwl = #{isRwl,jdbcType=VARCHAR},
+      is_zq = #{isZq,jdbcType=VARCHAR},
+      yd_bl = #{ydBl,jdbcType=DECIMAL},
+      nd_bl = #{ndBl,jdbcType=DECIMAL},
+      bl = #{bl,jdbcType=DECIMAL},
+      RebAmt = #{rebamt,jdbcType=DECIMAL},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      k_zcbz = #{kZcbz,jdbcType=LONGVARCHAR}
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sygs.pojo.sqlserver.kxsflxymt.KxsflxymtSql">
+    update k_xsflxymt
+    set status = #{status,jdbcType=TINYINT},
+      BillCode = #{billcode,jdbcType=VARCHAR},
+      Dates = #{dates,jdbcType=VARCHAR},
+      OnTime = #{ontime,jdbcType=VARCHAR},
+      StartDate = #{startdate,jdbcType=VARCHAR},
+      EndDate = #{enddate,jdbcType=VARCHAR},
+      BusinessCode = #{businesscode,jdbcType=VARCHAR},
+      BusinessName = #{businessname,jdbcType=VARCHAR},
+      caozyname = #{caozyname,jdbcType=VARCHAR},
+      k_department = #{kDepartment,jdbcType=VARCHAR},
+      k_zhangqilx = #{kZhangqilx,jdbcType=VARCHAR},
+      k_xyh = #{kXyh,jdbcType=VARCHAR},
+      k_xsxylx = #{kXsxylx,jdbcType=VARCHAR},
+      k_bwamount = #{kBwamount,jdbcType=DECIMAL},
+      k_dxfs = #{kDxfs,jdbcType=VARCHAR},
+      k_jslx = #{kJslx,jdbcType=VARCHAR},
+      k_qskj = #{kQskj,jdbcType=VARCHAR},
+      k_numamount = #{kNumamount,jdbcType=VARCHAR},
+      k_Taxtypes = #{kTaxtypes,jdbcType=VARCHAR},
+      k_flgz = #{kFlgz,jdbcType=VARCHAR},
+      k_lxtype = #{kLxtype,jdbcType=VARCHAR},
+      k_xyjsrq = #{kXyjsrq,jdbcType=VARCHAR},
+      k_rwl = #{kRwl,jdbcType=DECIMAL},
+      is_rwl = #{isRwl,jdbcType=VARCHAR},
+      is_zq = #{isZq,jdbcType=VARCHAR},
+      yd_bl = #{ydBl,jdbcType=DECIMAL},
+      nd_bl = #{ndBl,jdbcType=DECIMAL},
+      bl = #{bl,jdbcType=DECIMAL},
+      RebAmt = #{rebamt,jdbcType=DECIMAL},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </update>
+  <sql id="base_query">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != billno">
+         and t.BillNO = #{billno,jdbcType=INTEGER}
+      </if>
+      <if test="null != entid">
+         and t.EntId = #{entid,jdbcType=VARCHAR}
+      </if>
+      <if test="null != status">
+         and t.status = #{status,jdbcType=TINYINT}
+      </if>
+      <if test="null != billcode">
+         and t.BillCode = #{billcode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != dates">
+         and t.Dates = #{dates,jdbcType=VARCHAR}
+      </if>
+      <if test="null != ontime">
+         and t.OnTime = #{ontime,jdbcType=VARCHAR}
+      </if>
+      <if test="null != startdate">
+         and t.StartDate = #{startdate,jdbcType=VARCHAR}
+      </if>
+      <if test="null != enddate">
+         and t.EndDate = #{enddate,jdbcType=VARCHAR}
+      </if>
+      <if test="null != businesscode">
+         and t.BusinessCode = #{businesscode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != businessname">
+         and t.BusinessName = #{businessname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != caozyname">
+         and t.caozyname = #{caozyname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kDepartment">
+         and t.k_department = #{kDepartment,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kZhangqilx">
+         and t.k_zhangqilx = #{kZhangqilx,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kXyh">
+         and t.k_xyh = #{kXyh,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kXsxylx">
+         and t.k_xsxylx = #{kXsxylx,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kBwamount">
+         and t.k_bwamount = #{kBwamount,jdbcType=DECIMAL}
+      </if>
+      <if test="null != kDxfs">
+         and t.k_dxfs = #{kDxfs,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kJslx">
+         and t.k_jslx = #{kJslx,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kQskj">
+         and t.k_qskj = #{kQskj,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kNumamount">
+         and t.k_numamount = #{kNumamount,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kTaxtypes">
+         and t.k_Taxtypes = #{kTaxtypes,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kFlgz">
+         and t.k_flgz = #{kFlgz,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kLxtype">
+         and t.k_lxtype = #{kLxtype,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kXyjsrq">
+         and t.k_xyjsrq = #{kXyjsrq,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kRwl">
+         and t.k_rwl = #{kRwl,jdbcType=DECIMAL}
+      </if>
+      <if test="null != isRwl">
+         and t.is_rwl = #{isRwl,jdbcType=VARCHAR}
+      </if>
+      <if test="null != isZq">
+         and t.is_zq = #{isZq,jdbcType=VARCHAR}
+      </if>
+      <if test="null != ydBl">
+         and t.yd_bl = #{ydBl,jdbcType=DECIMAL}
+      </if>
+      <if test="null != ndBl">
+         and t.nd_bl = #{ndBl,jdbcType=DECIMAL}
+      </if>
+      <if test="null != bl">
+         and t.bl = #{bl,jdbcType=DECIMAL}
+      </if>
+      <if test="null != rebamt">
+         and t.RebAmt = #{rebamt,jdbcType=DECIMAL}
+      </if>
+      <if test="null != isDelete">
+         and t.is_delete = #{isDelete,jdbcType=TINYINT}
+      </if>
+      <if test="null != createDate">
+         and t.create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != updateDate">
+         and t.update_date = #{updateDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != kZcbz">
+         and t.k_zcbz = #{kZcbz,jdbcType=LONGVARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.sygs.pojo.sqlserver.kxsflxymt.KxsflxymtSql" resultMap="BaseResultMap">
+    select t.* from k_xsflxymt t
+    <include refid="base_query" />
+  </select>
+  <select id="list" parameterType="com.sygs.pojo.sqlserver.kxsflxymt.KxsflxymtSql" resultMap="BaseResultMap">
+    select t.* from k_xsflxymt t
+    <include refid="base_query" />
+  </select>
+</mapper>

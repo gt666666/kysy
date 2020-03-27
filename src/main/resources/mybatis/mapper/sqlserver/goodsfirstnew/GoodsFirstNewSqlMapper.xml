@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sygs.dao.sqlserver.goodsfirstnew.GoodsFirstNewSqlMapper">
+  <resultMap id="BaseResultMap" type="com.sygs.pojo.mysql.goodsfirstnew.GoodsFirstNew">
+    <id column="BillNO" jdbcType="INTEGER" property="billno" />
+    <id column="EntId" jdbcType="VARCHAR" property="entid" />
+    <result column="BillCode" jdbcType="VARCHAR" property="billcode" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="Dates" jdbcType="VARCHAR" property="dates" />
+    <result column="OnTime" jdbcType="VARCHAR" property="ontime" />
+    <result column="GoodsId" jdbcType="VARCHAR" property="goodsid" />
+    <result column="GoodsCode" jdbcType="VARCHAR" property="goodscode" />
+    <result column="GoodsSpec" jdbcType="VARCHAR" property="goodsspec" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="Place" jdbcType="VARCHAR" property="place" />
+    <result column="Manufacturer" jdbcType="VARCHAR" property="manufacturer" />
+    <result column="WmsMeas" jdbcType="INTEGER" property="wmsmeas" />
+    <result column="StorageTerm" jdbcType="VARCHAR" property="storageterm" />
+    <result column="GCategoryName" jdbcType="VARCHAR" property="gcategoryname" />
+    <result column="InEffectDay" jdbcType="INTEGER" property="ineffectday" />
+    <result column="DayUnit" jdbcType="VARCHAR" property="dayunit" />
+    <result column="RegMark" jdbcType="VARCHAR" property="regmark" />
+    <result column="RegDates" jdbcType="VARCHAR" property="regdates" />
+    <result column="RegMarkvalTo" jdbcType="VARCHAR" property="regmarkvalto" />
+    <result column="k_ssxkcyr" jdbcType="VARCHAR" property="kSsxkcyr" />
+    <result column="Treatment" jdbcType="VARCHAR" property="treatment" />
+    <result column="QualStand" jdbcType="VARCHAR" property="qualstand" />
+    <result column="ArchNo" jdbcType="VARCHAR" property="archno" />
+    <result column="controlcode" jdbcType="VARCHAR" property="controlcode" />
+    <result column="controlname" jdbcType="VARCHAR" property="controlname" />
+    <result column="QCategory" jdbcType="VARCHAR" property="qcategory" />
+    <result column="FirstType" jdbcType="VARCHAR" property="firsttype" />
+    <result column="ApprovalNo" jdbcType="VARCHAR" property="approvalno" />
+    <result column="FormulaName" jdbcType="VARCHAR" property="formulaname" />
+    <result column="k_scxkzh" jdbcType="VARCHAR" property="kScxkzh" />
+    <result column="k_scxkzfzrq" jdbcType="VARCHAR" property="kScxkzfzrq" />
+    <result column="k_scxkzyxq" jdbcType="VARCHAR" property="kScxkzyxq" />
+    <result column="k_ypfzrmc" jdbcType="VARCHAR" property="kYpfzrmc" />
+    <result column="k_ypfzrmc1" jdbcType="VARCHAR" property="kYpfzrmc1" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    BillNO, EntId, BillCode, status, Dates, OnTime, GoodsId, GoodsCode, GoodsSpec, unit, 
+    Place, Manufacturer, WmsMeas, StorageTerm, GCategoryName, InEffectDay, DayUnit, RegMark, 
+    RegDates, RegMarkvalTo, k_ssxkcyr, Treatment, QualStand, ArchNo, controlcode, controlname, 
+    QCategory, FirstType, ApprovalNo, FormulaName, k_scxkzh, k_scxkzfzrq, k_scxkzyxq, 
+    k_ypfzrmc, k_ypfzrmc1, is_delete, create_date, update_date
+  </sql>
+
+  <select id="viewOaGoodsFirst"  parameterType="java.util.Map" resultMap="BaseResultMap">
+    select * from View_OA_GoodsFirst where billno=#{billno} AND entid=#{entid}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.sygs.pojo.sqlserver.goodsfirstnew.GoodsFirstNewSql" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_first_new
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sygs.pojo.sqlserver.goodsfirstnew.GoodsFirstNewSql">
+    delete from goods_first_new
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sygs.pojo.sqlserver.goodsfirstnew.GoodsFirstNewSql">
+    insert into goods_first_new (BillNO, EntId, BillCode, 
+      status, Dates, OnTime, 
+      GoodsId, GoodsCode, GoodsSpec, 
+      unit, Place, Manufacturer, 
+      WmsMeas, StorageTerm, GCategoryName, 
+      InEffectDay, DayUnit, RegMark, 
+      RegDates, RegMarkvalTo, k_ssxkcyr, 
+      Treatment, QualStand, ArchNo, 
+      controlcode, controlname, QCategory, 
+      FirstType, ApprovalNo, FormulaName, 
+      k_scxkzh, k_scxkzfzrq, k_scxkzyxq, 
+      k_ypfzrmc, k_ypfzrmc1, is_delete, 
+      create_date, update_date)
+    values (#{billno,jdbcType=INTEGER}, #{entid,jdbcType=VARCHAR}, #{billcode,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{dates,jdbcType=VARCHAR}, #{ontime,jdbcType=VARCHAR}, 
+      #{goodsid,jdbcType=VARCHAR}, #{goodscode,jdbcType=VARCHAR}, #{goodsspec,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{place,jdbcType=VARCHAR}, #{manufacturer,jdbcType=VARCHAR}, 
+      #{wmsmeas,jdbcType=INTEGER}, #{storageterm,jdbcType=VARCHAR}, #{gcategoryname,jdbcType=VARCHAR}, 
+      #{ineffectday,jdbcType=INTEGER}, #{dayunit,jdbcType=VARCHAR}, #{regmark,jdbcType=VARCHAR}, 
+      #{regdates,jdbcType=VARCHAR}, #{regmarkvalto,jdbcType=VARCHAR}, #{kSsxkcyr,jdbcType=VARCHAR}, 
+      #{treatment,jdbcType=VARCHAR}, #{qualstand,jdbcType=VARCHAR}, #{archno,jdbcType=VARCHAR}, 
+      #{controlcode,jdbcType=VARCHAR}, #{controlname,jdbcType=VARCHAR}, #{qcategory,jdbcType=VARCHAR}, 
+      #{firsttype,jdbcType=VARCHAR}, #{approvalno,jdbcType=VARCHAR}, #{formulaname,jdbcType=VARCHAR}, 
+      #{kScxkzh,jdbcType=VARCHAR}, #{kScxkzfzrq,jdbcType=VARCHAR}, #{kScxkzyxq,jdbcType=VARCHAR}, 
+      #{kYpfzrmc,jdbcType=VARCHAR}, #{kYpfzrmc1,jdbcType=VARCHAR}, #{isDelete,jdbcType=TINYINT}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sygs.pojo.sqlserver.goodsfirstnew.GoodsFirstNewSql">
+    insert into goods_first_new
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        BillNO,
+      </if>
+      <if test="entid != null">
+        EntId,
+      </if>
+      <if test="billcode != null">
+        BillCode,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="dates != null">
+        Dates,
+      </if>
+      <if test="ontime != null">
+        OnTime,
+      </if>
+      <if test="goodsid != null">
+        GoodsId,
+      </if>
+      <if test="goodscode != null">
+        GoodsCode,
+      </if>
+      <if test="goodsspec != null">
+        GoodsSpec,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="place != null">
+        Place,
+      </if>
+      <if test="manufacturer != null">
+        Manufacturer,
+      </if>
+      <if test="wmsmeas != null">
+        WmsMeas,
+      </if>
+      <if test="storageterm != null">
+        StorageTerm,
+      </if>
+      <if test="gcategoryname != null">
+        GCategoryName,
+      </if>
+      <if test="ineffectday != null">
+        InEffectDay,
+      </if>
+      <if test="dayunit != null">
+        DayUnit,
+      </if>
+      <if test="regmark != null">
+        RegMark,
+      </if>
+      <if test="regdates != null">
+        RegDates,
+      </if>
+      <if test="regmarkvalto != null">
+        RegMarkvalTo,
+      </if>
+      <if test="kSsxkcyr != null">
+        k_ssxkcyr,
+      </if>
+      <if test="treatment != null">
+        Treatment,
+      </if>
+      <if test="qualstand != null">
+        QualStand,
+      </if>
+      <if test="archno != null">
+        ArchNo,
+      </if>
+      <if test="controlcode != null">
+        controlcode,
+      </if>
+      <if test="controlname != null">
+        controlname,
+      </if>
+      <if test="qcategory != null">
+        QCategory,
+      </if>
+      <if test="firsttype != null">
+        FirstType,
+      </if>
+      <if test="approvalno != null">
+        ApprovalNo,
+      </if>
+      <if test="formulaname != null">
+        FormulaName,
+      </if>
+      <if test="kScxkzh != null">
+        k_scxkzh,
+      </if>
+      <if test="kScxkzfzrq != null">
+        k_scxkzfzrq,
+      </if>
+      <if test="kScxkzyxq != null">
+        k_scxkzyxq,
+      </if>
+      <if test="kYpfzrmc != null">
+        k_ypfzrmc,
+      </if>
+      <if test="kYpfzrmc1 != null">
+        k_ypfzrmc1,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        #{billno,jdbcType=INTEGER},
+      </if>
+      <if test="entid != null">
+        #{entid,jdbcType=VARCHAR},
+      </if>
+      <if test="billcode != null">
+        #{billcode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="dates != null">
+        #{dates,jdbcType=VARCHAR},
+      </if>
+      <if test="ontime != null">
+        #{ontime,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsid != null">
+        #{goodsid,jdbcType=VARCHAR},
+      </if>
+      <if test="goodscode != null">
+        #{goodscode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsspec != null">
+        #{goodsspec,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null">
+        #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="wmsmeas != null">
+        #{wmsmeas,jdbcType=INTEGER},
+      </if>
+      <if test="storageterm != null">
+        #{storageterm,jdbcType=VARCHAR},
+      </if>
+      <if test="gcategoryname != null">
+        #{gcategoryname,jdbcType=VARCHAR},
+      </if>
+      <if test="ineffectday != null">
+        #{ineffectday,jdbcType=INTEGER},
+      </if>
+      <if test="dayunit != null">
+        #{dayunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regmark != null">
+        #{regmark,jdbcType=VARCHAR},
+      </if>
+      <if test="regdates != null">
+        #{regdates,jdbcType=VARCHAR},
+      </if>
+      <if test="regmarkvalto != null">
+        #{regmarkvalto,jdbcType=VARCHAR},
+      </if>
+      <if test="kSsxkcyr != null">
+        #{kSsxkcyr,jdbcType=VARCHAR},
+      </if>
+      <if test="treatment != null">
+        #{treatment,jdbcType=VARCHAR},
+      </if>
+      <if test="qualstand != null">
+        #{qualstand,jdbcType=VARCHAR},
+      </if>
+      <if test="archno != null">
+        #{archno,jdbcType=VARCHAR},
+      </if>
+      <if test="controlcode != null">
+        #{controlcode,jdbcType=VARCHAR},
+      </if>
+      <if test="controlname != null">
+        #{controlname,jdbcType=VARCHAR},
+      </if>
+      <if test="qcategory != null">
+        #{qcategory,jdbcType=VARCHAR},
+      </if>
+      <if test="firsttype != null">
+        #{firsttype,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalno != null">
+        #{approvalno,jdbcType=VARCHAR},
+      </if>
+      <if test="formulaname != null">
+        #{formulaname,jdbcType=VARCHAR},
+      </if>
+      <if test="kScxkzh != null">
+        #{kScxkzh,jdbcType=VARCHAR},
+      </if>
+      <if test="kScxkzfzrq != null">
+        #{kScxkzfzrq,jdbcType=VARCHAR},
+      </if>
+      <if test="kScxkzyxq != null">
+        #{kScxkzyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="kYpfzrmc != null">
+        #{kYpfzrmc,jdbcType=VARCHAR},
+      </if>
+      <if test="kYpfzrmc1 != null">
+        #{kYpfzrmc1,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sygs.pojo.sqlserver.goodsfirstnew.GoodsFirstNewSql">
+    update goods_first_new
+    <set>
+      <if test="billcode != null">
+        BillCode = #{billcode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="dates != null">
+        Dates = #{dates,jdbcType=VARCHAR},
+      </if>
+      <if test="ontime != null">
+        OnTime = #{ontime,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsid != null">
+        GoodsId = #{goodsid,jdbcType=VARCHAR},
+      </if>
+      <if test="goodscode != null">
+        GoodsCode = #{goodscode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsspec != null">
+        GoodsSpec = #{goodsspec,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null">
+        Place = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        Manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="wmsmeas != null">
+        WmsMeas = #{wmsmeas,jdbcType=INTEGER},
+      </if>
+      <if test="storageterm != null">
+        StorageTerm = #{storageterm,jdbcType=VARCHAR},
+      </if>
+      <if test="gcategoryname != null">
+        GCategoryName = #{gcategoryname,jdbcType=VARCHAR},
+      </if>
+      <if test="ineffectday != null">
+        InEffectDay = #{ineffectday,jdbcType=INTEGER},
+      </if>
+      <if test="dayunit != null">
+        DayUnit = #{dayunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regmark != null">
+        RegMark = #{regmark,jdbcType=VARCHAR},
+      </if>
+      <if test="regdates != null">
+        RegDates = #{regdates,jdbcType=VARCHAR},
+      </if>
+      <if test="regmarkvalto != null">
+        RegMarkvalTo = #{regmarkvalto,jdbcType=VARCHAR},
+      </if>
+      <if test="kSsxkcyr != null">
+        k_ssxkcyr = #{kSsxkcyr,jdbcType=VARCHAR},
+      </if>
+      <if test="treatment != null">
+        Treatment = #{treatment,jdbcType=VARCHAR},
+      </if>
+      <if test="qualstand != null">
+        QualStand = #{qualstand,jdbcType=VARCHAR},
+      </if>
+      <if test="archno != null">
+        ArchNo = #{archno,jdbcType=VARCHAR},
+      </if>
+      <if test="controlcode != null">
+        controlcode = #{controlcode,jdbcType=VARCHAR},
+      </if>
+      <if test="controlname != null">
+        controlname = #{controlname,jdbcType=VARCHAR},
+      </if>
+      <if test="qcategory != null">
+        QCategory = #{qcategory,jdbcType=VARCHAR},
+      </if>
+      <if test="firsttype != null">
+        FirstType = #{firsttype,jdbcType=VARCHAR},
+      </if>
+      <if test="approvalno != null">
+        ApprovalNo = #{approvalno,jdbcType=VARCHAR},
+      </if>
+      <if test="formulaname != null">
+        FormulaName = #{formulaname,jdbcType=VARCHAR},
+      </if>
+      <if test="kScxkzh != null">
+        k_scxkzh = #{kScxkzh,jdbcType=VARCHAR},
+      </if>
+      <if test="kScxkzfzrq != null">
+        k_scxkzfzrq = #{kScxkzfzrq,jdbcType=VARCHAR},
+      </if>
+      <if test="kScxkzyxq != null">
+        k_scxkzyxq = #{kScxkzyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="kYpfzrmc != null">
+        k_ypfzrmc = #{kYpfzrmc,jdbcType=VARCHAR},
+      </if>
+      <if test="kYpfzrmc1 != null">
+        k_ypfzrmc1 = #{kYpfzrmc1,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sygs.pojo.sqlserver.goodsfirstnew.GoodsFirstNewSql">
+    update goods_first_new
+    set BillCode = #{billcode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      Dates = #{dates,jdbcType=VARCHAR},
+      OnTime = #{ontime,jdbcType=VARCHAR},
+      GoodsId = #{goodsid,jdbcType=VARCHAR},
+      GoodsCode = #{goodscode,jdbcType=VARCHAR},
+      GoodsSpec = #{goodsspec,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      Place = #{place,jdbcType=VARCHAR},
+      Manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      WmsMeas = #{wmsmeas,jdbcType=INTEGER},
+      StorageTerm = #{storageterm,jdbcType=VARCHAR},
+      GCategoryName = #{gcategoryname,jdbcType=VARCHAR},
+      InEffectDay = #{ineffectday,jdbcType=INTEGER},
+      DayUnit = #{dayunit,jdbcType=VARCHAR},
+      RegMark = #{regmark,jdbcType=VARCHAR},
+      RegDates = #{regdates,jdbcType=VARCHAR},
+      RegMarkvalTo = #{regmarkvalto,jdbcType=VARCHAR},
+      k_ssxkcyr = #{kSsxkcyr,jdbcType=VARCHAR},
+      Treatment = #{treatment,jdbcType=VARCHAR},
+      QualStand = #{qualstand,jdbcType=VARCHAR},
+      ArchNo = #{archno,jdbcType=VARCHAR},
+      controlcode = #{controlcode,jdbcType=VARCHAR},
+      controlname = #{controlname,jdbcType=VARCHAR},
+      QCategory = #{qcategory,jdbcType=VARCHAR},
+      FirstType = #{firsttype,jdbcType=VARCHAR},
+      ApprovalNo = #{approvalno,jdbcType=VARCHAR},
+      FormulaName = #{formulaname,jdbcType=VARCHAR},
+      k_scxkzh = #{kScxkzh,jdbcType=VARCHAR},
+      k_scxkzfzrq = #{kScxkzfzrq,jdbcType=VARCHAR},
+      k_scxkzyxq = #{kScxkzyxq,jdbcType=VARCHAR},
+      k_ypfzrmc = #{kYpfzrmc,jdbcType=VARCHAR},
+      k_ypfzrmc1 = #{kYpfzrmc1,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </update>
+  <sql id="base_query">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != billno">
+         and t.BillNO = #{billno,jdbcType=INTEGER}
+      </if>
+      <if test="null != entid">
+         and t.EntId = #{entid,jdbcType=VARCHAR}
+      </if>
+      <if test="null != billcode">
+         and t.BillCode = #{billcode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != status">
+         and t.status = #{status,jdbcType=TINYINT}
+      </if>
+      <if test="null != dates">
+         and t.Dates = #{dates,jdbcType=VARCHAR}
+      </if>
+      <if test="null != ontime">
+         and t.OnTime = #{ontime,jdbcType=VARCHAR}
+      </if>
+      <if test="null != goodsid">
+         and t.GoodsId = #{goodsid,jdbcType=VARCHAR}
+      </if>
+      <if test="null != goodscode">
+         and t.GoodsCode = #{goodscode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != goodsspec">
+         and t.GoodsSpec = #{goodsspec,jdbcType=VARCHAR}
+      </if>
+      <if test="null != unit">
+         and t.unit = #{unit,jdbcType=VARCHAR}
+      </if>
+      <if test="null != place">
+         and t.Place = #{place,jdbcType=VARCHAR}
+      </if>
+      <if test="null != manufacturer">
+         and t.Manufacturer = #{manufacturer,jdbcType=VARCHAR}
+      </if>
+      <if test="null != wmsmeas">
+         and t.WmsMeas = #{wmsmeas,jdbcType=INTEGER}
+      </if>
+      <if test="null != storageterm">
+         and t.StorageTerm = #{storageterm,jdbcType=VARCHAR}
+      </if>
+      <if test="null != gcategoryname">
+         and t.GCategoryName = #{gcategoryname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != ineffectday">
+         and t.InEffectDay = #{ineffectday,jdbcType=INTEGER}
+      </if>
+      <if test="null != dayunit">
+         and t.DayUnit = #{dayunit,jdbcType=VARCHAR}
+      </if>
+      <if test="null != regmark">
+         and t.RegMark = #{regmark,jdbcType=VARCHAR}
+      </if>
+      <if test="null != regdates">
+         and t.RegDates = #{regdates,jdbcType=VARCHAR}
+      </if>
+      <if test="null != regmarkvalto">
+         and t.RegMarkvalTo = #{regmarkvalto,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kSsxkcyr">
+         and t.k_ssxkcyr = #{kSsxkcyr,jdbcType=VARCHAR}
+      </if>
+      <if test="null != treatment">
+         and t.Treatment = #{treatment,jdbcType=VARCHAR}
+      </if>
+      <if test="null != qualstand">
+         and t.QualStand = #{qualstand,jdbcType=VARCHAR}
+      </if>
+      <if test="null != archno">
+         and t.ArchNo = #{archno,jdbcType=VARCHAR}
+      </if>
+      <if test="null != controlcode">
+         and t.controlcode = #{controlcode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != controlname">
+         and t.controlname = #{controlname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != qcategory">
+         and t.QCategory = #{qcategory,jdbcType=VARCHAR}
+      </if>
+      <if test="null != firsttype">
+         and t.FirstType = #{firsttype,jdbcType=VARCHAR}
+      </if>
+      <if test="null != approvalno">
+         and t.ApprovalNo = #{approvalno,jdbcType=VARCHAR}
+      </if>
+      <if test="null != formulaname">
+         and t.FormulaName = #{formulaname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kScxkzh">
+         and t.k_scxkzh = #{kScxkzh,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kScxkzfzrq">
+         and t.k_scxkzfzrq = #{kScxkzfzrq,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kScxkzyxq">
+         and t.k_scxkzyxq = #{kScxkzyxq,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kYpfzrmc">
+         and t.k_ypfzrmc = #{kYpfzrmc,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kYpfzrmc1">
+         and t.k_ypfzrmc1 = #{kYpfzrmc1,jdbcType=VARCHAR}
+      </if>
+      <if test="null != isDelete">
+         and t.is_delete = #{isDelete,jdbcType=TINYINT}
+      </if>
+      <if test="null != createDate">
+         and t.create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != updateDate">
+         and t.update_date = #{updateDate,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.sygs.pojo.sqlserver.goodsfirstnew.GoodsFirstNewSql" resultMap="BaseResultMap">
+    select t.* from goods_first_new t
+    <include refid="base_query" />
+  </select>
+  <select id="list" parameterType="com.sygs.pojo.sqlserver.goodsfirstnew.GoodsFirstNewSql" resultMap="BaseResultMap">
+    select t.* from goods_first_new t
+    <include refid="base_query" />
+  </select>
+</mapper>

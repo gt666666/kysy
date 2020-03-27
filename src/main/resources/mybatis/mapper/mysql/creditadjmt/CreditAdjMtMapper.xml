@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sygs.dao.mysql.creditadjmt.CreditAdjMtMapper">
+  <resultMap id="BaseResultMap" type="com.sygs.pojo.mysql.creditadjmt.CreditAdjMt">
+    <id column="BillNO" jdbcType="INTEGER" property="billno" />
+    <id column="EntId" jdbcType="VARCHAR" property="entid" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="Dates" jdbcType="VARCHAR" property="dates" />
+    <result column="OnTime" jdbcType="VARCHAR" property="ontime" />
+    <result column="BillCode" jdbcType="VARCHAR" property="billcode" />
+    <result column="StaffName" jdbcType="VARCHAR" property="staffname" />
+    <result column="k_tztype" jdbcType="VARCHAR" property="kTztype" />
+    <result column="k_zxlx" jdbcType="VARCHAR" property="kZxlx" />
+    <result column="AdjustType" jdbcType="VARCHAR" property="adjusttype" />
+    <result column="k_cnhkrq" jdbcType="VARCHAR" property="kCnhkrq" />
+    <result column="k_cnhkje" jdbcType="DECIMAL" property="kCnhkje" />
+    <result column="Remark" jdbcType="LONGVARCHAR" property="remark" />
+    <result column="k_bcsh" jdbcType="LONGVARCHAR" property="kBcsh" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    BillNO, EntId, status, Dates, OnTime, BillCode, StaffName, k_tztype, k_zxlx, AdjustType, 
+    k_cnhkrq, k_cnhkje,   Remark, k_bcsh, is_delete, create_date, update_date
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="com.sygs.pojo.mysql.creditadjmt.CreditAdjMt" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+
+    from credit_adj_mt
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sygs.pojo.mysql.creditadjmt.CreditAdjMt">
+    delete from credit_adj_mt
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sygs.pojo.mysql.creditadjmt.CreditAdjMt">
+    insert into credit_adj_mt (BillNO, EntId, status, 
+      Dates, OnTime, BillCode, 
+      StaffName, k_tztype, k_zxlx, 
+      AdjustType, k_cnhkrq, k_cnhkje, 
+      is_delete, create_date, update_date, 
+      Remark, k_bcsh)
+    values (#{billno,jdbcType=INTEGER}, #{entid,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{dates,jdbcType=VARCHAR}, #{ontime,jdbcType=VARCHAR}, #{billcode,jdbcType=VARCHAR}, 
+      #{staffname,jdbcType=VARCHAR}, #{kTztype,jdbcType=VARCHAR}, #{kZxlx,jdbcType=VARCHAR},
+      #{adjusttype,jdbcType=VARCHAR}, #{kCnhkrq,jdbcType=VARCHAR}, #{kCnhkje,jdbcType=DECIMAL}, 
+      #{isDelete,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=LONGVARCHAR}, #{kBcsh,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sygs.pojo.mysql.creditadjmt.CreditAdjMt">
+    insert into credit_adj_mt
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        BillNO,
+      </if>
+      <if test="entid != null">
+        EntId,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="dates != null">
+        Dates,
+      </if>
+      <if test="ontime != null">
+        OnTime,
+      </if>
+      <if test="billcode != null">
+        BillCode,
+      </if>
+      <if test="staffname != null">
+        StaffName,
+      </if>
+      <if test="kTztype != null">
+        k_tztype,
+      </if>
+      <if test="kZxlx != null">
+        k_zxlx,
+      </if>
+      <if test="adjusttype != null">
+        AdjustType,
+      </if>
+      <if test="kCnhkrq != null">
+        k_cnhkrq,
+      </if>
+      <if test="kCnhkje != null">
+        k_cnhkje,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="kBcsh != null">
+        k_bcsh,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        #{billno,jdbcType=INTEGER},
+      </if>
+      <if test="entid != null">
+        #{entid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="dates != null">
+        #{dates,jdbcType=VARCHAR},
+      </if>
+      <if test="ontime != null">
+        #{ontime,jdbcType=VARCHAR},
+      </if>
+      <if test="billcode != null">
+        #{billcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffname != null">
+        #{staffname,jdbcType=VARCHAR},
+      </if>
+      <if test="kTztype != null">
+        #{kTztype,jdbcType=VARCHAR},
+      </if>
+      <if test="kZxlx != null">
+        #{kZxlx,jdbcType=VARCHAR},
+      </if>
+      <if test="adjusttype != null">
+        #{adjusttype,jdbcType=VARCHAR},
+      </if>
+      <if test="kCnhkrq != null">
+        #{kCnhkrq,jdbcType=VARCHAR},
+      </if>
+      <if test="kCnhkje != null">
+        #{kCnhkje,jdbcType=DECIMAL},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="kBcsh != null">
+        #{kBcsh,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sygs.pojo.mysql.creditadjmt.CreditAdjMt">
+    update credit_adj_mt
+    <set>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="dates != null">
+        Dates = #{dates,jdbcType=VARCHAR},
+      </if>
+      <if test="ontime != null">
+        OnTime = #{ontime,jdbcType=VARCHAR},
+      </if>
+      <if test="billcode != null">
+        BillCode = #{billcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffname != null">
+        StaffName = #{staffname,jdbcType=VARCHAR},
+      </if>
+      <if test="kTztype != null">
+        k_tztype = #{kTztype,jdbcType=VARCHAR},
+      </if>
+      <if test="kZxlx != null">
+        k_zxlx = #{kZxlx,jdbcType=VARCHAR},
+      </if>
+      <if test="adjusttype != null">
+        AdjustType = #{adjusttype,jdbcType=VARCHAR},
+      </if>
+      <if test="kCnhkrq != null">
+        k_cnhkrq = #{kCnhkrq,jdbcType=VARCHAR},
+      </if>
+      <if test="kCnhkje != null">
+        k_cnhkje = #{kCnhkje,jdbcType=DECIMAL},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="kBcsh != null">
+        k_bcsh = #{kBcsh,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sygs.pojo.mysql.creditadjmt.CreditAdjMt">
+    update credit_adj_mt
+    set status = #{status,jdbcType=TINYINT},
+      Dates = #{dates,jdbcType=VARCHAR},
+      OnTime = #{ontime,jdbcType=VARCHAR},
+      BillCode = #{billcode,jdbcType=VARCHAR},
+      StaffName = #{staffname,jdbcType=VARCHAR},
+      k_tztype = #{kTztype,jdbcType=VARCHAR},
+      k_zxlx = #{kZxlx,jdbcType=VARCHAR},
+      AdjustType = #{adjusttype,jdbcType=VARCHAR},
+      k_cnhkrq = #{kCnhkrq,jdbcType=VARCHAR},
+      k_cnhkje = #{kCnhkje,jdbcType=DECIMAL},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      Remark = #{remark,jdbcType=LONGVARCHAR},
+      k_bcsh = #{kBcsh,jdbcType=LONGVARCHAR}
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sygs.pojo.mysql.creditadjmt.CreditAdjMt">
+    update credit_adj_mt
+    set status = #{status,jdbcType=TINYINT},
+      Dates = #{dates,jdbcType=VARCHAR},
+      OnTime = #{ontime,jdbcType=VARCHAR},
+      BillCode = #{billcode,jdbcType=VARCHAR},
+      StaffName = #{staffname,jdbcType=VARCHAR},
+      k_tztype = #{kTztype,jdbcType=VARCHAR},
+      k_zxlx = #{kZxlx,jdbcType=VARCHAR},
+      AdjustType = #{adjusttype,jdbcType=VARCHAR},
+      k_cnhkrq = #{kCnhkrq,jdbcType=VARCHAR},
+      k_cnhkje = #{kCnhkje,jdbcType=DECIMAL},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </update>
+  <sql id="base_query">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != billno">
+         and t.BillNO = #{billno,jdbcType=INTEGER}
+      </if>
+      <if test="null != entid">
+         and t.EntId = #{entid,jdbcType=VARCHAR}
+      </if>
+      <if test="null != status">
+         and t.status = #{status,jdbcType=TINYINT}
+      </if>
+      <if test="null != dates">
+         and t.Dates = #{dates,jdbcType=VARCHAR}
+      </if>
+      <if test="null != ontime">
+         and t.OnTime = #{ontime,jdbcType=VARCHAR}
+      </if>
+      <if test="null != billcode">
+         and t.BillCode = #{billcode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != staffname">
+         and t.StaffName = #{staffname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kTztype">
+         and t.k_tztype = #{kTztype,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kZxlx">
+         and t.k_zxlx = #{kZxlx,jdbcType=VARCHAR}
+      </if>
+      <if test="null != adjusttype">
+         and t.AdjustType = #{adjusttype,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kCnhkrq">
+         and t.k_cnhkrq = #{kCnhkrq,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kCnhkje">
+         and t.k_cnhkje = #{kCnhkje,jdbcType=DECIMAL}
+      </if>
+      <if test="null != isDelete">
+         and t.is_delete = #{isDelete,jdbcType=TINYINT}
+      </if>
+      <if test="null != createDate">
+         and t.create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != updateDate">
+         and t.update_date = #{updateDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != remark">
+         and t.Remark = #{remark,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="null != kBcsh">
+         and t.k_bcsh = #{kBcsh,jdbcType=LONGVARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.sygs.pojo.mysql.creditadjmt.CreditAdjMt" resultMap="BaseResultMap">
+    select t.* from credit_adj_mt t
+    <include refid="base_query" />
+  </select>
+  <select id="list" parameterType="com.sygs.pojo.mysql.creditadjmt.CreditAdjMt" resultMap="BaseResultMap">
+    select t.* from credit_adj_mt t
+    <include refid="base_query" />
+  </select>
+</mapper>

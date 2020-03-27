@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sygs.dao.mysql.salenotesmt.SaleNotesMtMapper">
+  <resultMap id="BaseResultMap" type="com.sygs.pojo.mysql.salenotesmt.SaleNotesMt">
+    <id column="BillNO" jdbcType="VARCHAR" property="billno" />
+    <id column="EntId" jdbcType="VARCHAR" property="entid" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="Dates" jdbcType="VARCHAR" property="dates" />
+    <result column="BillCode" jdbcType="VARCHAR" property="billcode" />
+    <result column="k_chjtype" jdbcType="VARCHAR" property="kChjtype" />
+    <result column="ClientCode" jdbcType="VARCHAR" property="clientcode" />
+    <result column="BusinessName" jdbcType="VARCHAR" property="businessname" />
+    <result column="Department" jdbcType="VARCHAR" property="department" />
+    <result column="OppContact" jdbcType="VARCHAR" property="oppcontact" />
+    <result column="StaffName" jdbcType="VARCHAR" property="staffname" />
+    <result column="k_zhangqilx" jdbcType="VARCHAR" property="kZhangqilx" />
+    <result column="k_cgxyh" jdbcType="VARCHAR" property="kCgxyh" />
+    <result column="k_ndbillcode" jdbcType="VARCHAR" property="kNdbillcode" />
+    <result column="k_billcode" jdbcType="VARCHAR" property="kBillcode" />
+    <result column="RebAmt" jdbcType="VARCHAR" property="rebamt" />
+    <result column="k_bwamount" jdbcType="VARCHAR" property="kBwamount" />
+    <result column="k_ywcje" jdbcType="VARCHAR" property="kYwcje" />
+    <result column="k_flje" jdbcType="VARCHAR" property="kFlje" />
+    <result column="k_wwcje" jdbcType="VARCHAR" property="kWwcje" />
+    <result column="fc_TaxAmount" jdbcType="VARCHAR" property="fcTaxamount" />
+    <result column="caozyName" jdbcType="VARCHAR" property="caozyname" />
+    <result column="is_bbm" jdbcType="VARCHAR" property="isBbm" />
+    <result column="Remark" jdbcType="LONGVARCHAR" property="remark" />
+    <result column="TaxAmount" jdbcType="VARCHAR" property="TaxAmount" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    BillNO, EntId,status, Dates, BillCode, k_chjtype, ClientCode, BusinessName, Department,
+    OppContact, StaffName, k_zhangqilx, k_cgxyh, k_ndbillcode, k_billcode, RebAmt, k_bwamount, 
+    k_ywcje, k_flje, k_wwcje, fc_TaxAmount, caozyName, is_bbm,Remark, TaxAmount,is_delete, create_date,update_date
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sale_notes_mt
+    where BillNO = #{billno,jdbcType=VARCHAR}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </select>
+  <update id="deleteByPrimaryKey" parameterType="java.lang.String">
+    update  sale_notes_mt  set is_delete=1
+    where BillNO = #{billno,jdbcType=VARCHAR}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </update>
+
+  <insert id="insert" parameterType="com.sygs.pojo.mysql.salenotesmt.SaleNotesMt">
+    insert into sale_notes_mt (BillNO, EntId, status,Dates,
+      BillCode, k_chjtype, ClientCode, 
+      BusinessName, Department, OppContact, 
+      StaffName, k_zhangqilx, k_cgxyh, 
+      k_ndbillcode, k_billcode, RebAmt, 
+      k_bwamount, k_ywcje, k_flje, 
+      k_wwcje, fc_TaxAmount, caozyName, 
+      is_bbm, is_delete, create_date, 
+      Remark,update_date,TaxAmount)
+    values (#{billno,jdbcType=VARCHAR}, #{entid,jdbcType=VARCHAR},#{status,jdbcType=TINYINT}, #{dates,jdbcType=VARCHAR},
+      #{billcode,jdbcType=VARCHAR}, #{kChjtype,jdbcType=VARCHAR}, #{clientcode,jdbcType=VARCHAR}, 
+      #{businessname,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{oppcontact,jdbcType=VARCHAR}, 
+      #{staffname,jdbcType=VARCHAR}, #{kZhangqilx,jdbcType=VARCHAR}, #{kCgxyh,jdbcType=VARCHAR}, 
+      #{kNdbillcode,jdbcType=VARCHAR}, #{kBillcode,jdbcType=VARCHAR}, #{rebamt,jdbcType=VARCHAR}, 
+      #{kBwamount,jdbcType=VARCHAR}, #{kYwcje,jdbcType=VARCHAR}, #{kFlje,jdbcType=VARCHAR}, 
+      #{kWwcje,jdbcType=VARCHAR}, #{fcTaxamount,jdbcType=VARCHAR}, #{caozyname,jdbcType=VARCHAR}, 
+      #{isBbm,jdbcType=VARCHAR}, #{isDelete,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=LONGVARCHAR},#{update_date,jdbcType=TIMESTAMP},#{TaxAmount,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.sygs.pojo.mysql.salenotesmt.SaleNotesMt">
+    insert into sale_notes_mt
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        BillNO,
+      </if>
+      <if test="entid != null">
+        EntId,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="dates != null">
+        Dates,
+      </if>
+      <if test="billcode != null">
+        BillCode,
+      </if>
+      <if test="kChjtype != null">
+        k_chjtype,
+      </if>
+      <if test="clientcode != null">
+        ClientCode,
+      </if>
+      <if test="businessname != null">
+        BusinessName,
+      </if>
+      <if test="department != null">
+        Department,
+      </if>
+      <if test="oppcontact != null">
+        OppContact,
+      </if>
+      <if test="staffname != null">
+        StaffName,
+      </if>
+      <if test="kZhangqilx != null">
+        k_zhangqilx,
+      </if>
+      <if test="kCgxyh != null">
+        k_cgxyh,
+      </if>
+      <if test="kNdbillcode != null">
+        k_ndbillcode,
+      </if>
+      <if test="kBillcode != null">
+        k_billcode,
+      </if>
+      <if test="rebamt != null">
+        RebAmt,
+      </if>
+      <if test="kBwamount != null">
+        k_bwamount,
+      </if>
+      <if test="kYwcje != null">
+        k_ywcje,
+      </if>
+      <if test="kFlje != null">
+        k_flje,
+      </if>
+      <if test="kWwcje != null">
+        k_wwcje,
+      </if>
+      <if test="fcTaxamount != null">
+        fc_TaxAmount,
+      </if>
+      <if test="caozyname != null">
+        caozyName,
+      </if>
+      <if test="isBbm != null">
+        is_bbm,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="TaxAmount != null">
+        TaxAmount,
+      </if>
+
+
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="entid != null">
+      #{entid,jdbcType=VARCHAR},
+    </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="dates != null">
+        #{dates,jdbcType=VARCHAR},
+      </if>
+      <if test="billcode != null">
+        #{billcode,jdbcType=VARCHAR},
+      </if>
+      <if test="kChjtype != null">
+        #{kChjtype,jdbcType=VARCHAR},
+      </if>
+      <if test="clientcode != null">
+        #{clientcode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessname != null">
+        #{businessname,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="oppcontact != null">
+        #{oppcontact,jdbcType=VARCHAR},
+      </if>
+      <if test="staffname != null">
+        #{staffname,jdbcType=VARCHAR},
+      </if>
+      <if test="kZhangqilx != null">
+        #{kZhangqilx,jdbcType=VARCHAR},
+      </if>
+      <if test="kCgxyh != null">
+        #{kCgxyh,jdbcType=VARCHAR},
+      </if>
+      <if test="kNdbillcode != null">
+        #{kNdbillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="kBillcode != null">
+        #{kBillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="rebamt != null">
+        #{rebamt,jdbcType=VARCHAR},
+      </if>
+      <if test="kBwamount != null">
+        #{kBwamount,jdbcType=VARCHAR},
+      </if>
+      <if test="kYwcje != null">
+        #{kYwcje,jdbcType=VARCHAR},
+      </if>
+      <if test="kFlje != null">
+        #{kFlje,jdbcType=VARCHAR},
+      </if>
+      <if test="kWwcje != null">
+        #{kWwcje,jdbcType=VARCHAR},
+      </if>
+      <if test="fcTaxamount != null">
+        #{fcTaxamount,jdbcType=VARCHAR},
+      </if>
+      <if test="caozyname != null">
+        #{caozyname,jdbcType=VARCHAR},
+      </if>
+      <if test="isBbm != null">
+        #{isBbm,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="taxAmount != null">
+        #{taxAmount,jdbcType=VARCHAR},
+      </if>
+
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.sygs.pojo.mysql.salenotesmt.SaleNotesMt">
+    update sale_notes_mt
+    <set>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="dates != null">
+        Dates = #{dates,jdbcType=VARCHAR},
+      </if>
+      <if test="billcode != null">
+        BillCode = #{billcode,jdbcType=VARCHAR},
+      </if>
+      <if test="kChjtype != null">
+        k_chjtype = #{kChjtype,jdbcType=VARCHAR},
+      </if>
+      <if test="clientcode != null">
+        ClientCode = #{clientcode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessname != null">
+        BusinessName = #{businessname,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        Department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="oppcontact != null">
+        OppContact = #{oppcontact,jdbcType=VARCHAR},
+      </if>
+      <if test="staffname != null">
+        StaffName = #{staffname,jdbcType=VARCHAR},
+      </if>
+      <if test="kZhangqilx != null">
+        k_zhangqilx = #{kZhangqilx,jdbcType=VARCHAR},
+      </if>
+      <if test="kCgxyh != null">
+        k_cgxyh = #{kCgxyh,jdbcType=VARCHAR},
+      </if>
+      <if test="kNdbillcode != null">
+        k_ndbillcode = #{kNdbillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="kBillcode != null">
+        k_billcode = #{kBillcode,jdbcType=VARCHAR},
+      </if>
+      <if test="rebamt != null">
+        RebAmt = #{rebamt,jdbcType=VARCHAR},
+      </if>
+      <if test="kBwamount != null">
+        k_bwamount = #{kBwamount,jdbcType=VARCHAR},
+      </if>
+      <if test="kYwcje != null">
+        k_ywcje = #{kYwcje,jdbcType=VARCHAR},
+      </if>
+      <if test="kFlje != null">
+        k_flje = #{kFlje,jdbcType=VARCHAR},
+      </if>
+      <if test="kWwcje != null">
+        k_wwcje = #{kWwcje,jdbcType=VARCHAR},
+      </if>
+      <if test="fcTaxamount != null">
+        fc_TaxAmount = #{fcTaxamount,jdbcType=VARCHAR},
+      </if>
+      <if test="caozyname != null">
+        caozyName = #{caozyname,jdbcType=VARCHAR},
+      </if>
+      <if test="isBbm != null">
+        is_bbm = #{isBbm,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taxAmount != null">
+        TaxAmount = #{taxAmount,jdbcType=VARCHAR},
+      </if>
+
+
+    </set>
+    where BillNO = #{billno,jdbcType=VARCHAR}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.sygs.pojo.mysql.salenotesmt.SaleNotesMt">
+    update sale_notes_mt
+    set Dates = #{dates,jdbcType=VARCHAR},
+      BillCode = #{billcode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      k_chjtype = #{kChjtype,jdbcType=VARCHAR},
+      ClientCode = #{clientcode,jdbcType=VARCHAR},
+      BusinessName = #{businessname,jdbcType=VARCHAR},
+      Department = #{department,jdbcType=VARCHAR},
+      OppContact = #{oppcontact,jdbcType=VARCHAR},
+      StaffName = #{staffname,jdbcType=VARCHAR},
+      k_zhangqilx = #{kZhangqilx,jdbcType=VARCHAR},
+      k_cgxyh = #{kCgxyh,jdbcType=VARCHAR},
+      k_ndbillcode = #{kNdbillcode,jdbcType=VARCHAR},
+      k_billcode = #{kBillcode,jdbcType=VARCHAR},
+      RebAmt = #{rebamt,jdbcType=VARCHAR},
+      k_bwamount = #{kBwamount,jdbcType=VARCHAR},
+      k_ywcje = #{kYwcje,jdbcType=VARCHAR},
+      k_flje = #{kFlje,jdbcType=VARCHAR},
+      k_wwcje = #{kWwcje,jdbcType=VARCHAR},
+      fc_TaxAmount = #{fcTaxamount,jdbcType=VARCHAR},
+      caozyName = #{caozyname,jdbcType=VARCHAR},
+      is_bbm = #{isBbm,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+       update_date = #{updateDate,jdbcType=TIMESTAMP}
+        TaxAmount = #{taxAmount,jdbcType=VARCHAR}
+    where BillNO = #{billno,jdbcType=VARCHAR}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </update>
+
+  <sql id="base_query">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != billno">
+         and t.BillNO = #{billno,jdbcType=VARCHAR}
+      </if>
+      <if test="null != entid">
+         and t.EntId = #{entid,jdbcType=VARCHAR}
+      </if>
+      <if test="null != status">
+        and t.status = #{status,jdbcType=TINYINT}
+      </if>
+      <if test="null != dates">
+         and t.Dates = #{dates,jdbcType=VARCHAR}
+      </if>
+      <if test="null != billcode">
+         and t.BillCode = #{billcode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kChjtype">
+         and t.k_chjtype = #{kChjtype,jdbcType=VARCHAR}
+      </if>
+      <if test="null != clientcode">
+         and t.ClientCode = #{clientcode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != businessname">
+         and t.BusinessName = #{businessname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != department">
+         and t.Department = #{department,jdbcType=VARCHAR}
+      </if>
+      <if test="null != oppcontact">
+         and t.OppContact = #{oppcontact,jdbcType=VARCHAR}
+      </if>
+      <if test="null != staffname">
+         and t.StaffName = #{staffname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kZhangqilx">
+         and t.k_zhangqilx = #{kZhangqilx,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kCgxyh">
+         and t.k_cgxyh = #{kCgxyh,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kNdbillcode">
+         and t.k_ndbillcode = #{kNdbillcode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kBillcode">
+         and t.k_billcode = #{kBillcode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != rebamt">
+         and t.RebAmt = #{rebamt,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kBwamount">
+         and t.k_bwamount = #{kBwamount,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kYwcje">
+         and t.k_ywcje = #{kYwcje,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kFlje">
+         and t.k_flje = #{kFlje,jdbcType=VARCHAR}
+      </if>
+      <if test="null != kWwcje">
+         and t.k_wwcje = #{kWwcje,jdbcType=VARCHAR}
+      </if>
+      <if test="null != fcTaxamount">
+         and t.fc_TaxAmount = #{fcTaxamount,jdbcType=VARCHAR}
+      </if>
+      <if test="null != caozyname">
+         and t.caozyName = #{caozyname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != isBbm">
+         and t.is_bbm = #{isBbm,jdbcType=VARCHAR}
+      </if>
+      <if test="null != isDelete">
+         and t.is_delete = #{isDelete,jdbcType=TINYINT}
+      </if>
+      <if test="null != createDate">
+         and t.create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != remark">
+         and t.Remark = #{remark,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="null != updateDate">
+        and t.update_date = #{updateDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != taxAmount">
+        and t.TaxAmount = #{taxAmount,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+
+  <select id="find" parameterType="com.sygs.pojo.mysql.salenotesmt.SaleNotesMt" resultMap="BaseResultMap">
+    select t.* from sale_notes_mt t
+    <include refid="base_query" />
+  </select>
+  <select id="list" parameterType="com.sygs.pojo.mysql.salenotesmt.SaleNotesMt" resultMap="BaseResultMap">
+    select t.* from sale_notes_mt t
+    <include refid="base_query" />
+  </select>
+</mapper>

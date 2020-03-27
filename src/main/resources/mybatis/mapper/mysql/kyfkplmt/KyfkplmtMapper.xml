@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sygs.dao.mysql.kyfkplmt.KyfkplmtMapper">
+  <resultMap id="BaseResultMap" type="com.sygs.pojo.mysql.kyfkplmt.Kyfkplmt">
+    <id column="BillNO" jdbcType="INTEGER" property="billno" />
+    <id column="EntId" jdbcType="VARCHAR" property="entid" />
+    <result column="billcode" jdbcType="VARCHAR" property="billcode" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="Dates" jdbcType="VARCHAR" property="dates" />
+    <result column="StartDate" jdbcType="VARCHAR" property="startdate" />
+    <result column="EndDate" jdbcType="VARCHAR" property="enddate" />
+    <result column="caozyName" jdbcType="VARCHAR" property="caozyname" />
+    <result column="sumTaxAmount" jdbcType="DECIMAL" property="sumtaxamount" />
+    <result column="sumzp" jdbcType="DECIMAL" property="sumzp" />
+    <result column="sumcd3" jdbcType="VARCHAR" property="sumcd3" />
+    <result column="sumdh" jdbcType="DECIMAL" property="sumdh" />
+    <result column="sumcd6" jdbcType="DECIMAL" property="sumcd6" />
+    <result column="STAFFNAME" jdbcType="VARCHAR" property="staffname" />
+    <result column="Remark" jdbcType="LONGVARCHAR" property="remark" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    BillNO, EntId, billcode, status, Dates, StartDate, EndDate, caozyName, sumTaxAmount, 
+    sumzp, sumcd3, sumdh, sumcd6, STAFFNAME,  Remark,is_delete, create_date, update_date
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="com.sygs.pojo.mysql.kyfkplmt.Kyfkplmt" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+
+    from k_yfkplmt
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.sygs.pojo.mysql.kyfkplmt.Kyfkplmt">
+    delete from k_yfkplmt
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sygs.pojo.mysql.kyfkplmt.Kyfkplmt">
+    insert into k_yfkplmt (BillNO, EntId, billcode, 
+      status, Dates, StartDate, 
+      EndDate, caozyName, sumTaxAmount, 
+      sumzp, sumcd3, sumdh, 
+      sumcd6, STAFFNAME, is_delete, 
+      create_date, update_date, Remark
+      )
+    values (#{billno,jdbcType=INTEGER}, #{entid,jdbcType=VARCHAR}, #{billcode,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{dates,jdbcType=VARCHAR}, #{startdate,jdbcType=VARCHAR}, 
+      #{enddate,jdbcType=VARCHAR}, #{caozyname,jdbcType=VARCHAR}, #{sumtaxamount,jdbcType=DECIMAL}, 
+      #{sumzp,jdbcType=DECIMAL}, #{sumcd3,jdbcType=VARCHAR}, #{sumdh,jdbcType=DECIMAL}, 
+      #{sumcd6,jdbcType=DECIMAL}, #{staffname,jdbcType=VARCHAR}, #{isDelete,jdbcType=TINYINT}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sygs.pojo.mysql.kyfkplmt.Kyfkplmt">
+    insert into k_yfkplmt
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        BillNO,
+      </if>
+      <if test="entid != null">
+        EntId,
+      </if>
+      <if test="billcode != null">
+        billcode,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="dates != null">
+        Dates,
+      </if>
+      <if test="startdate != null">
+        StartDate,
+      </if>
+      <if test="enddate != null">
+        EndDate,
+      </if>
+      <if test="caozyname != null">
+        caozyName,
+      </if>
+      <if test="sumtaxamount != null">
+        sumTaxAmount,
+      </if>
+      <if test="sumzp != null">
+        sumzp,
+      </if>
+      <if test="sumcd3 != null">
+        sumcd3,
+      </if>
+      <if test="sumdh != null">
+        sumdh,
+      </if>
+      <if test="sumcd6 != null">
+        sumcd6,
+      </if>
+      <if test="staffname != null">
+        STAFFNAME,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        #{billno,jdbcType=INTEGER},
+      </if>
+      <if test="entid != null">
+        #{entid,jdbcType=VARCHAR},
+      </if>
+      <if test="billcode != null">
+        #{billcode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="dates != null">
+        #{dates,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null">
+        #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="caozyname != null">
+        #{caozyname,jdbcType=VARCHAR},
+      </if>
+      <if test="sumtaxamount != null">
+        #{sumtaxamount,jdbcType=DECIMAL},
+      </if>
+      <if test="sumzp != null">
+        #{sumzp,jdbcType=DECIMAL},
+      </if>
+      <if test="sumcd3 != null">
+        #{sumcd3,jdbcType=VARCHAR},
+      </if>
+      <if test="sumdh != null">
+        #{sumdh,jdbcType=DECIMAL},
+      </if>
+      <if test="sumcd6 != null">
+        #{sumcd6,jdbcType=DECIMAL},
+      </if>
+      <if test="staffname != null">
+        #{staffname,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sygs.pojo.mysql.kyfkplmt.Kyfkplmt">
+    update k_yfkplmt
+    <set>
+      <if test="billcode != null">
+        billcode = #{billcode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="dates != null">
+        Dates = #{dates,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null">
+        StartDate = #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="enddate != null">
+        EndDate = #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="caozyname != null">
+        caozyName = #{caozyname,jdbcType=VARCHAR},
+      </if>
+      <if test="sumtaxamount != null">
+        sumTaxAmount = #{sumtaxamount,jdbcType=DECIMAL},
+      </if>
+      <if test="sumzp != null">
+        sumzp = #{sumzp,jdbcType=DECIMAL},
+      </if>
+      <if test="sumcd3 != null">
+        sumcd3 = #{sumcd3,jdbcType=VARCHAR},
+      </if>
+      <if test="sumdh != null">
+        sumdh = #{sumdh,jdbcType=DECIMAL},
+      </if>
+      <if test="sumcd6 != null">
+        sumcd6 = #{sumcd6,jdbcType=DECIMAL},
+      </if>
+      <if test="staffname != null">
+        STAFFNAME = #{staffname,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sygs.pojo.mysql.kyfkplmt.Kyfkplmt">
+    update k_yfkplmt
+    set billcode = #{billcode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      Dates = #{dates,jdbcType=VARCHAR},
+      StartDate = #{startdate,jdbcType=VARCHAR},
+      EndDate = #{enddate,jdbcType=VARCHAR},
+      caozyName = #{caozyname,jdbcType=VARCHAR},
+      sumTaxAmount = #{sumtaxamount,jdbcType=DECIMAL},
+      sumzp = #{sumzp,jdbcType=DECIMAL},
+      sumcd3 = #{sumcd3,jdbcType=VARCHAR},
+      sumdh = #{sumdh,jdbcType=DECIMAL},
+      sumcd6 = #{sumcd6,jdbcType=DECIMAL},
+      STAFFNAME = #{staffname,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      Remark = #{remark,jdbcType=LONGVARCHAR}
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sygs.pojo.mysql.kyfkplmt.Kyfkplmt">
+    update k_yfkplmt
+    set billcode = #{billcode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      Dates = #{dates,jdbcType=VARCHAR},
+      StartDate = #{startdate,jdbcType=VARCHAR},
+      EndDate = #{enddate,jdbcType=VARCHAR},
+      caozyName = #{caozyname,jdbcType=VARCHAR},
+      sumTaxAmount = #{sumtaxamount,jdbcType=DECIMAL},
+      sumzp = #{sumzp,jdbcType=DECIMAL},
+      sumcd3 = #{sumcd3,jdbcType=VARCHAR},
+      sumdh = #{sumdh,jdbcType=DECIMAL},
+      sumcd6 = #{sumcd6,jdbcType=DECIMAL},
+      STAFFNAME = #{staffname,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where BillNO = #{billno,jdbcType=INTEGER}
+      and EntId = #{entid,jdbcType=VARCHAR}
+  </update>
+  <sql id="base_query">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != billno">
+         and t.BillNO = #{billno,jdbcType=INTEGER}
+      </if>
+      <if test="null != entid">
+         and t.EntId = #{entid,jdbcType=VARCHAR}
+      </if>
+      <if test="null != billcode">
+         and t.billcode = #{billcode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != status">
+         and t.status = #{status,jdbcType=TINYINT}
+      </if>
+      <if test="null != dates">
+         and t.Dates = #{dates,jdbcType=VARCHAR}
+      </if>
+      <if test="null != startdate">
+         and t.StartDate = #{startdate,jdbcType=VARCHAR}
+      </if>
+      <if test="null != enddate">
+         and t.EndDate = #{enddate,jdbcType=VARCHAR}
+      </if>
+      <if test="null != caozyname">
+         and t.caozyName = #{caozyname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != sumtaxamount">
+         and t.sumTaxAmount = #{sumtaxamount,jdbcType=DECIMAL}
+      </if>
+      <if test="null != sumzp">
+         and t.sumzp = #{sumzp,jdbcType=DECIMAL}
+      </if>
+      <if test="null != sumcd3">
+         and t.sumcd3 = #{sumcd3,jdbcType=VARCHAR}
+      </if>
+      <if test="null != sumdh">
+         and t.sumdh = #{sumdh,jdbcType=DECIMAL}
+      </if>
+      <if test="null != sumcd6">
+         and t.sumcd6 = #{sumcd6,jdbcType=DECIMAL}
+      </if>
+      <if test="null != staffname">
+         and t.STAFFNAME = #{staffname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != isDelete">
+         and t.is_delete = #{isDelete,jdbcType=TINYINT}
+      </if>
+      <if test="null != createDate">
+         and t.create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != updateDate">
+         and t.update_date = #{updateDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != remark">
+         and t.Remark = #{remark,jdbcType=LONGVARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.sygs.pojo.mysql.kyfkplmt.Kyfkplmt" resultMap="BaseResultMap">
+    select t.* from k_yfkplmt t
+    <include refid="base_query" />
+  </select>
+  <select id="list" parameterType="com.sygs.pojo.mysql.kyfkplmt.Kyfkplmt" resultMap="BaseResultMap">
+    select t.* from k_yfkplmt t
+    <include refid="base_query" />
+  </select>
+</mapper>
