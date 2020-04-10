@@ -7,9 +7,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @ServletComponentScan  //Servlet、Filter、Listener 可以直接通过 @WebServlet、@WebFilter、@WebListener 注解自动注册，无需其他代码。
-@EnableScheduling //  开启定时器功能
+@EnableScheduling //开启定时器功能
 public class KysyApplication {
     public static void main(String[] args) {
+        //启动
         SpringApplication.run(KysyApplication.class, args);
     }
 
