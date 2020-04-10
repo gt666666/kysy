@@ -41,7 +41,7 @@ spring:
     database: 0    #表示使用的Redis库的编号，Redis中提供了16个database，编号为0~15
     host: 192.168.40.173  #部署到服务器要换成服务器内网ip地址
     port: 6379
-    password:
+    password: kysyjava
     #timeout: 5000
     jedis:
       pool:

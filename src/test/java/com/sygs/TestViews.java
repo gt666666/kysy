@@ -14,6 +14,7 @@ import com.sygs.service.mysql.kplfkmt.KPlfkmtService;
 import com.sygs.service.mysql.kxsflxymt.KxsflxymtService;
 import com.sygs.service.mysql.kyfkplmt.KyfkplmtService;
 import com.sygs.service.mysql.salenotesmt.SaleNotesMtService;
+import com.sygs.utils.MD5Code;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +80,8 @@ public class TestViews {
     @Test
     public void test4(){
 
-        this.goodsFirstNewService.insertSelective(3918882,"E1VQBVG2U48");
+        String admin = new MD5Code().getMD5ofStr("admin");
+        System.out.println(admin);
     }
 
 

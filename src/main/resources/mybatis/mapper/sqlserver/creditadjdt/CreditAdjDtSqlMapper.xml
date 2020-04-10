@@ -83,7 +83,7 @@
   <insert id="insertSelective" parameterType="com.sygs.pojo.sqlserver.creditadjdt.CreditAdjDtSql">
     insert into credit_adj_dt
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="billno != null">
+      <if test="billno != null">                                                                                                            
         BillNO,
       </if>
       <if test="entid != null">

@@ -1,5 +1,4 @@
 package com.sygs.config.webServiceConfig;
-import com.sygs.pojo.mysql.kxsflxymt.Kxsflxymt;
 import com.sygs.service.mysql.creditadjmt.CreditAdjMtService;
 import com.sygs.service.mysql.goodsfirstnew.GoodsFirstNewService;
 import com.sygs.service.mysql.kndxy.KndxyService;
@@ -32,7 +31,7 @@ public class WebServiceConfig {
     @Bean
     public Endpoint saleNotesMtEndpoint() {
         EndpointImpl endpoint = new EndpointImpl(this.springBus(), new SaleNotesMtService());
-        endpoint.publish("/erpSaleNotesMt");   //销售调价开票单
+        endpoint.publish("/saleNotesMt");   //销售调价开票单
        // endpoint.getInInterceptors().add(new AuthInterceptor());
         return endpoint;
     }
@@ -40,13 +39,13 @@ public class WebServiceConfig {
     @Bean
     public Endpoint creditAdjMtendpoint() {
         EndpointImpl endpoint = new EndpointImpl(this.springBus(), new CreditAdjMtService());
-        endpoint.publish("/erpCreditAdjMt");    //信贷申请
+        endpoint.publish("/creditAdjMt");    //信贷申请
         return endpoint;
     }
     @Bean
     public Endpoint kyfkplmtendpoint() {
         EndpointImpl endpoint = new EndpointImpl(this.springBus(), new KyfkplmtService());
-        endpoint.publish("/erpKyfkplmt");    //预付款申请汇总单
+        endpoint.publish("/yfkplmt");    //预付款申请汇总单
         return endpoint;
     }
     @Bean

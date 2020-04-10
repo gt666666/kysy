@@ -25,7 +25,7 @@ public class KysyApplicationTests {
     public void contextLoads() {
         //创建动态客户端
         JaxWsDynamicClientFactory factory = JaxWsDynamicClientFactory.newInstance();
-        Client client = factory.createClient("http://192.168.9.93/services/HrmService?wsdl");
+        Client client = factory.createClient("http://kyoa.kpc.com.cn/services/HrmService?wsdl");
         // 需要密码的情况需要加上用户名和密码
        // client.getOutInterceptors().add(new ClientLoginInterceptor("admin","123456"));
         HTTPClientPolicy httpClientPolicy = new HTTPClientPolicy();
@@ -38,7 +38,7 @@ public class KysyApplicationTests {
         try {
             Object[] objects = new Object[0];
             // invoke("方法名",参数1,参数2,参数3....);
-            objects = client.invoke("checkUser","192.168.9.93","15987192713","1");
+            objects = client.invoke("checkUser","http://kyoa.kpc.com.cn","15987192713","1");
             System.err.println(objects[0]);
         } catch (Exception e) {
             e.printStackTrace();
