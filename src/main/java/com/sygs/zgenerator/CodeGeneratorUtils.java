@@ -30,7 +30,7 @@ public class CodeGeneratorUtils {
         String rootPath = String.valueOf(param.get("rootPath"));
         String folderName = String.valueOf(param.get("folderName"));
         String serviceName = String.valueOf(param.get("serviceName"));
-        String servicePath = rootPath + "service\\sqlserver\\" + folderName + "\\" + serviceName + ".java";
+        String servicePath = rootPath + "service\\mysql\\" + folderName + "\\" + serviceName + ".java";
         File service = FileUtil.touch(new File(servicePath));
         FileUtil.writeString(serviceContent, service, "UTF-8");
     }
@@ -48,7 +48,7 @@ public class CodeGeneratorUtils {
         String rootPath = String.valueOf(param.get("rootPath"));
         String folderName = String.valueOf(param.get("folderName"));
         String controllerName = String.valueOf(param.get("controllerName"));
-        String controllerPath = rootPath + "controller\\sqlserver\\" + folderName + "\\" + controllerName + ".java";
+        String controllerPath = rootPath + "controller\\mysql\\" + folderName + "\\" + controllerName + ".java";
         File controller = FileUtil.touch(new File(controllerPath));
         FileUtil.writeString(controllerContent, controller, "UTF-8");
     }
@@ -73,13 +73,13 @@ public class CodeGeneratorUtils {
         String serviceTitle = properties.getProperty("service.title");
         String serviceName = pojoName + "Service";
         String serviceNameMin = StrUtil.lowerFirst(serviceName);
-        String servicePackagePath = rootPack + ".service.sqlserver." + folderName;
+        String servicePackagePath = rootPack + ".service.mysql." + folderName;
         String controllerTitle = properties.getProperty("controller.title");
         String controllerName = pojoName + "Controller";
-        String controllerPackagePath = rootPack + ".controller.sqlserver." + folderName;
+        String controllerPackagePath = rootPack + ".controller.mysql." + folderName;
         String mapperName = pojoName + "Mapper";
         String mapperNameMin = StrUtil.lowerFirst(mapperName);
-        String mapperPath = rootPack + ".dao.sqlserver." + folderName + "." + mapperName;
+        String mapperPath = rootPack + ".dao.mysql." + folderName + "." + mapperName;
         String pojoPath = pojoDir + "." + pojoName;
         String tableName = properties.getProperty("table.name");
         String author = Tools.isBlank(properties.getProperty("author")) ? System.getProperty("user.name") : properties.getProperty("author");

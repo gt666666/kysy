@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sygs.dao.mysql.hrmuserinfo.HrmuserinfoMapper">
+  <resultMap id="BaseResultMap" type="com.sygs.pojo.mysql.hrmuserinfo.Hrmuserinfo">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="loginid" jdbcType="VARCHAR" property="loginid" />
+    <result column="lastname" jdbcType="VARCHAR" property="lastname" />
+    <result column="departmentid" jdbcType="VARCHAR" property="departmentid" />
+    <result column="jobtitle" jdbcType="VARCHAR" property="jobtitle" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sygs.pojo.mysql.hrmuserinfo.Hrmuserinfo">
+    insert into hrmuserinfo (id, loginid, lastname, 
+      departmentid, jobtitle)
+    values (#{id,jdbcType=INTEGER}, #{loginid,jdbcType=VARCHAR}, #{lastname,jdbcType=VARCHAR}, 
+      #{departmentid,jdbcType=INTEGER}, #{jobtitle,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sygs.pojo.mysql.hrmuserinfo.Hrmuserinfo">
+    insert into hrmuserinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="loginid != null">
+        loginid,
+      </if>
+      <if test="lastname != null">
+        lastname,
+      </if>
+      <if test="departmentid != null">
+        departmentid,
+      </if>
+      <if test="jobtitle != null">
+        jobtitle,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginid != null">
+        #{loginid,jdbcType=VARCHAR},
+      </if>
+      <if test="lastname != null">
+        #{lastname,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentid != null">
+        #{departmentid,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtitle != null">
+        #{jobtitle,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <sql id="base_query">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != id">
+         and t.id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="null != loginid">
+         and t.loginid = #{loginid,jdbcType=VARCHAR}
+      </if>
+      <if test="null != lastname">
+         and t.lastname = #{lastname,jdbcType=VARCHAR}
+      </if>
+      <if test="null != departmentid">
+         and t.departmentid = #{departmentid,jdbcType=VARCHAR}
+      </if>
+      <if test="null != jobtitle">
+         and t.jobtitle = #{jobtitle,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.sygs.pojo.mysql.hrmuserinfo.Hrmuserinfo" resultMap="BaseResultMap">
+    select t.* from hrmuserinfo t
+    <include refid="base_query" />
+  </select>
+  <select id="list" parameterType="com.sygs.pojo.mysql.hrmuserinfo.Hrmuserinfo" resultMap="BaseResultMap">
+    select t.* from hrmuserinfo t
+    <include refid="base_query" />
+  </select>
+  <delete id="deleteAll">
+    DELETE  FROM hrmuserinfo
+  </delete>
+</mapper>
