@@ -4,6 +4,7 @@ import com.sygs.pojo.mysql.hrmuserinfo.Hrmuserinfo;
 import com.sygs.pojo.mysql.salenotesmt.SaleNotesMt;
 import com.sygs.service.mysql.hrmuserinfo.HrmuserinfoService;
 import com.sygs.utils.XMLUtil;
+
 import oaHrClient.*;
 import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
@@ -110,9 +111,8 @@ public class KysyApplicationTests {
         List<UserBean> userBeans = hrmUserInfo.getUserBean();
         System.err.println("总数"+userBeans.size());
         for(UserBean  userBean:userBeans  ){
-            System.err.println(userBean.getUserid().intValue());
-            System.err.println(userBean.getLastname());
-            System.err.println(userBean.getDepartmentid().getValue());
+            System.err.println(userBean.getLoginid().getValue());
+
         }
     }
     @Test
@@ -125,7 +125,6 @@ public class KysyApplicationTests {
             System.err.println(jobTitleBean.getDepartmentid());
             System.err.println(jobTitleBean.getFullname());
         }
-
     }
     @Test
     public  void testHruserInfo(){

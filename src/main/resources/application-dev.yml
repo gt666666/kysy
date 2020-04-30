@@ -17,7 +17,7 @@ spring:
         max-total: 5   #最大的连接数
         max-wait-millis: 200   #等待连接获取的最大超时时间
     sqlserver:
-      jdbc-url: jdbc:sqlserver://116.54.19.110:54330;DatabaseName=KY_SKZY_0229
+      jdbc-url: jdbc:sqlserver://192.168.40.177:1433;DatabaseName=KY_SKZY_0229
       username: sa
       password: KYJT_yysygs177
       #使用druid数据源

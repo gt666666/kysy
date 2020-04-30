@@ -1,6 +1,7 @@
 package com.sygs.service.mysql.hrmuserinfo;
 
 import cn.hutool.core.date.DateTime;
+
 import oaHrClient.ArrayOfUserBean;
 import oaHrClient.HrmService;
 import oaHrClient.HrmServicePortType;
@@ -46,12 +47,16 @@ public class HrmuserinfoService {
         List<UserBean> userBeans = hrmUserInfo.getUserBean();
         System.err.println("总数"+userBeans.size());
         for(UserBean  userBean:userBeans  ){ //插入全部数据
-            hrmuserinfo.setId(userBean.getUserid().intValue());
-            hrmuserinfo.setLastname(userBean.getLastname().getValue());
-            hrmuserinfo.setLoginid(userBean.getLoginid().getValue());
-            hrmuserinfo.setDepartmentid(userBean.getDepartmentid().getValue());
-            hrmuserinfo.setJobtitle(userBean.getJobtitle().getValue());
-            this.hrmuserinfoMapper.insertSelective(hrmuserinfo);
+            String status = userBean.getStatus().getValue();
+            if("0".equals(status) || "1".equals(status) || "2".equals(status) || "3".equals(status)){   //0:试用、1:正式、2:临时、3:试用延期  同步信息
+                hrmuserinfo.setId(userBean.getUserid().intValue());
+                hrmuserinfo.setLastname(userBean.getLastname().getValue());
+                hrmuserinfo.setLoginid(userBean.getLoginid().getValue());
+                hrmuserinfo.setDepartmentid(userBean.getDepartmentid().getValue());
+                hrmuserinfo.setJobtitle(userBean.getJobtitle().getValue());
+                this.hrmuserinfoMapper.insertSelective(hrmuserinfo);
+            }
+
         }
     }
 

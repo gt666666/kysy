@@ -1,5 +1,6 @@
 package com.sygs;
 
+import com.sygs.controller.mysql.kyfkplmt.KyfkplmtController;
 import com.sygs.dao.sqlserver.kyfkplmt.KyfkplmtSqlMapper;
 import com.sygs.dao.sqlserver.salenotesdt.SaleNotesDtSqlMapper;
 import com.sygs.dao.sqlserver.salenotesmt.SaleNotesMtSqlMapper;
@@ -47,10 +48,10 @@ public class TestViews {
 
     @Autowired
     private SaleNotesDtSqlMapper  saleNotesDtSqlMapper;
-    @Autowired
-    private KPlfkmtService kPlfkmtService;
 
-   @Test
+
+
+    @Test
     public  void testSaleNotesMtSqlMapper(){
         System.err.println(this.saleNotesMtSqlMapper.viewOaSaleNotesMt("7482966","E1VQBVG2U48"));
     }
@@ -63,18 +64,20 @@ public class TestViews {
     public void testSaleNotesDtSelect(){
         List<SaleNotesDt>  saleNotesDts= this.saleNotesDtSqlMapper.ViewOASaleNotesDt("7487971", "E1VQBVG2U48");
         System.err.println(saleNotesDts);
-
     }
     @Test
     public void test1(){
         this.kyfkplmtService.insertSelective(7488549,"E1VQBVG2U48");
     }
-    @Test
-    public void test2(){
-        System.out.println(this.kyfkplmtService.list());
-    }
+//    @Test
+//    public void test2(){
+//        System.out.println(this.kyfkplmtService.listAll());
+//    }
+
     @Test
     public void test3(){
+
+        this.kyfkplmtService.insertSelective(7488549,"E1VQBVG2U48");
 
     }
     @Test

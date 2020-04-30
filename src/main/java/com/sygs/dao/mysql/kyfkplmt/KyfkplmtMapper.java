@@ -28,5 +28,7 @@ public interface KyfkplmtMapper {
 
     List<Kyfkplmt> list(Kyfkplmt record);
 
+   void updateBatch(   List<Kyfkplmt>  list);
+
     boolean insertForeach (List<Kyfkplmt>  list);
 }

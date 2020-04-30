@@ -55,6 +55,7 @@ public class KyfkplmtService {
      */
     @Transactional(rollbackFor = Exception.class)
     public void insertSelective(Integer billno, String entid) {
+
         Map<String, Object> map = new HashMap<>();
         map.put("billno", billno);
         map.put("entid", entid);
@@ -62,6 +63,7 @@ public class KyfkplmtService {
         kyfkplmt.setCreateDate(new DateTime());
         kyfkplmt.setIsDelete(false);
         kyfkplmt.setStatus(false);
+        kyfkplmt.setIsQushu(false);
         this.kyfkplmtMapper.insertSelective(kyfkplmt);   //预付款申请单批量主表插入
         List<Kyfkpldt> kyfkpldts = this.kyfkpldtSqlMapper.ViewOakYfkpldt(map);  //预付款申请单批量子表查询
         Map<String, Object> mapmx = null;
@@ -106,20 +108,13 @@ public class KyfkplmtService {
      * <p> 创建作者：gaoting </p>
      * <p> 修改作者： </p>
      *
-     * @param record 记录对象
+     * @param    resData  记录对象
      */
     @Transactional(rollbackFor = Exception.class)
-    public int updateById(Kyfkplmt record) {
-        // 先查询，再次修改。记录必须有id才能修改
-        if (Tools.isBlank(record.getBillno()) || Tools.isBlank(record.getBillno())) {
-            throw new FailException(ResultEnum.RECORD_IS_NULL);
-        }
-        // 未查询到记录的不能修改
-        Kyfkplmt select = this.selectById(record.getBillno(), record.getEntid());
-        if (null == select) {
-            throw new FailException(ResultEnum.RECORD_IS_NULL);
-        }
-        return this.kyfkplmtMapper.updateByPrimaryKeySelective(record);
+    public String updateById(String resData,String remark1,String remark2) {
+        System.err.println("resData="+resData+"remark1="+remark1+"remark2="+remark2);
+        return   "成功";
+        // return this.kyfkplmtMapper.updateByPrimaryKeySelective(record);
     }
 
     /**
@@ -151,13 +146,22 @@ public class KyfkplmtService {
      * <p> 创建时间：2020-03-11 11:40:03 </p>
      * <p> 创建作者：gaoting </p>
      * <p> 修改作者： </p>
-     *
      * @param
      */
-    public List<Kyfkplmt> list() {
+
+    public List<Kyfkplmt> listAll(String  init) {
         Kyfkplmt kyfkplmt = new Kyfkplmt();
         kyfkplmt.setStatus(false);
+        kyfkplmt.setIsQushu(false);
         List<Kyfkplmt> kyfkplmtsList = this.kyfkplmtMapper.list(kyfkplmt); //预付款申请汇总单主表没有审核的数据
+        System.err.println(kyfkplmtsList.size());
+        System.err.println(kyfkplmtsList);
+              for( Kyfkplmt   kyfkplmts:kyfkplmtsList){
+                  kyfkplmts.setIsQushu(true);
+                  System.err.println("==========");
+                  this.kyfkplmtMapper.updateByPrimaryKeySelective(kyfkplmts);
+              }
+
         Kyfkpldt kyfkpldt = null;
         for (Kyfkplmt kyfkplmt1 : kyfkplmtsList) {
             kyfkpldt = new Kyfkpldt();
@@ -175,10 +179,8 @@ public class KyfkplmtService {
                 kyfkplmt1.setKyfkpldts(kyfkpldtList);   //预付款申请汇总单子表
             }
         }
-        Kyfkplmt kyfkplmt1 = new Kyfkplmt();
-        kyfkplmt1.setMsg(ResultEnum.SELECT_SUCCESS.getMessage());
-        kyfkplmt1.setCode(ResultEnum.SELECT_SUCCESS.getCode());
-        kyfkplmtsList.add(kyfkplmt1);
+
+
         return kyfkplmtsList;
     }
 

@@ -18,6 +18,10 @@ public class Kyfkplmt implements Serializable {
 
     private String billcode;
 
+    private String mobile;
+
+    private  Boolean  isQushu;
+
     private Boolean status;
 
     private String dates;

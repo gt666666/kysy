@@ -12,6 +12,7 @@ import java.util.List;
 @Data
 public class Kyfkpldt  implements Serializable {
     private List<Kyfkhtmx> kyfkhtmxes;
+
     private Integer billno;
 
     private String entid;

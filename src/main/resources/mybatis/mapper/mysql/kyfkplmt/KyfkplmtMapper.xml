@@ -20,11 +20,14 @@
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="Remark" jdbcType="LONGVARCHAR" property="remark" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+    <result column="is_qushu" jdbcType="TINYINT" property="isQushu" />
   </resultMap>
 
   <sql id="Base_Column_List">
     BillNO, EntId, billcode, status, Dates, StartDate, EndDate, caozyName, sumTaxAmount, 
-    sumzp, sumcd3, sumdh, sumcd6, STAFFNAME,  Remark,is_delete, create_date, update_date
+    sumzp, sumcd3, sumdh, sumcd6, STAFFNAME,  Remark,is_delete, create_date, update_date,mobile,isQushu
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="com.sygs.pojo.mysql.kyfkplmt.Kyfkplmt" resultMap="BaseResultMap">
@@ -113,6 +116,13 @@
       <if test="remark != null">
         Remark,
       </if>
+      <if test="mobile != null">
+        MOBILE,
+      </if>
+      <if test="isQushu != null">
+        is_qushu,
+      </if>
+
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="billno != null">
@@ -169,6 +179,13 @@
       <if test="remark != null">
         #{remark,jdbcType=LONGVARCHAR},
       </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="isQushu != null">
+        #{isQushu,jdbcType=TINYINT},
+      </if>
+
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.sygs.pojo.mysql.kyfkplmt.Kyfkplmt">
@@ -221,6 +238,9 @@
       </if>
       <if test="remark != null">
         Remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isQushu != null">
+        is_qushu = #{isQushu,jdbcType=TINYINT},
       </if>
     </set>
     where BillNO = #{billno,jdbcType=INTEGER}
@@ -323,6 +343,9 @@
       <if test="null != remark">
          and t.Remark = #{remark,jdbcType=LONGVARCHAR}
       </if>
+      <if test="null != isQushu">
+        and t.is_qushu = #{isQushu,jdbcType=LONGVARCHAR}
+      </if>
     </trim>
   </sql>
   <select id="find" parameterType="com.sygs.pojo.mysql.kyfkplmt.Kyfkplmt" resultMap="BaseResultMap">
@@ -333,4 +356,14 @@
     select t.* from k_yfkplmt t
     <include refid="base_query" />
   </select>
+
+  <update id="updateBatch"  parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+      update k_yfkplmt
+      <set>
+        is_qushu=#{item.isQushu}
+      </set>
+      where BillNO =#{item.billno}   AND   EntId=#{item.entid}
+    </foreach>
+  </update>
 </mapper>

@@ -36,6 +36,7 @@ public class KyfkplmtController extends AbstractBaseController {
     @GetMapping("/insertSelective")
     public String insertSelective(Integer billno, String  entid, HttpServletRequest request) {
         String jsonpcallback = request.getParameter("jsonpcallback") ;
+
         this.kyfkplmtService.insertSelective(billno,entid);
         return jsonpcallback + "({\"billno\":\"" + billno + "\",\"entid\":\"" + entid + "\"})";
     }
@@ -51,14 +52,14 @@ public class KyfkplmtController extends AbstractBaseController {
     }
 
 
-    @PostMapping("/updateById")
-    public CommonResult updateById(Kyfkplmt record) {
-        int i= this.kyfkplmtService.updateById(record);
-        if (i==1) {
-        return result(ResultEnum.UPDATE_SUCCESS);
-        }
-        return  result(ResultEnum.UPDATE_ERROR);
-    }
+//    @PostMapping("/updateById")
+//    public CommonResult updateById(Kyfkplmt record) {
+//        int i= this.kyfkplmtService.updateById(record);
+//        if (i==1) {
+//        return result(ResultEnum.UPDATE_SUCCESS);
+//        }
+//        return  result(ResultEnum.UPDATE_ERROR);
+//    }
 
 
     @GetMapping("/selectById")
@@ -67,10 +68,10 @@ public class KyfkplmtController extends AbstractBaseController {
     }
 
 
-    @GetMapping("/listAll")
-    public CommonResult listAll() {
-        return resultData(ResultEnum.SELECT_SUCCESS,this.kyfkplmtService.list());
-    }
+//    @GetMapping("/listAll")
+//    public CommonResult listAll() {
+//        return resultData(ResultEnum.SELECT_SUCCESS,this.kyfkplmtService.listAll());
+//    }
 
     @GetMapping("/findByQuery")
     public Page<Kyfkplmt> findByQuery(Kyfkplmt record) {

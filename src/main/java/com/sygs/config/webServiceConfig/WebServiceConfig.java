@@ -45,7 +45,7 @@ public class WebServiceConfig {
     @Bean
     public Endpoint kyfkplmtendpoint() {
         EndpointImpl endpoint = new EndpointImpl(this.springBus(), new KyfkplmtService());
-        endpoint.publish("/yfkplmt");    //预付款申请汇总单
+        endpoint.publish("/kyfkplmt");    //预付款申请汇总单
         return endpoint;
     }
     @Bean

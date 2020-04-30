@@ -1,9 +1,6 @@
 package com.sygs.controller.mysql.hrmuserinfo;
 
-import oaHrClient.ArrayOfUserBean;
-import oaHrClient.HrmService;
-import oaHrClient.HrmServicePortType;
-import oaHrClient.UserBean;
+
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import com.sygs.controller.abs.AbstractBaseController;
