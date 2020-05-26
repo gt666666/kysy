@@ -7,6 +7,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 @Data
 public class KfkpldtSql implements Serializable {
+    private String Kyj1;
+
+    private String Kyj2;
+
+    private String Kyj3;
     private Integer billno;
 
     private String entid;

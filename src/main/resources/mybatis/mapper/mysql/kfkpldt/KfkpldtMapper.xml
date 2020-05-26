@@ -28,6 +28,10 @@
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+    <result column="is_qushu" jdbcType="TINYINT" property="isQushu" />
+    <result column="cwzj_zyj" jdbcType="VARCHAR" property="cwzjzyj" />
+    <result column="zjl_zyj" jdbcType="VARCHAR" property="zjlzyj" />
   </resultMap>
   <sql id="Base_Column_List">
     BillNO, EntId, BillSn, RfBillNO, RfBillCode, BusinessCode, BusinessName, k_department, 

@@ -20,6 +20,8 @@
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="cwzj_zyj" jdbcType="VARCHAR" property="cwzjzyj" />
+    <result column="zjl_zyj" jdbcType="VARCHAR" property="zjlzyj" />
   </resultMap>
 
   <sql id="Base_Column_List">
@@ -225,6 +227,12 @@
       </if>
       <if test="remark != null">
         Remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="zjlzyj != null">
+        zjl_zyj = #{zjlzyj,jdbcType=VARCHAR},
+      </if>
+      <if test="cwzjzyj != null">
+        cwzj_zyj = #{cwzjzyj,jdbcType=VARCHAR},
       </if>
     </set>
     where BillNO = #{billno,jdbcType=INTEGER}

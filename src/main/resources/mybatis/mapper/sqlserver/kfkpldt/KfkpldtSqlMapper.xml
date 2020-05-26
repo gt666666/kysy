@@ -28,6 +28,9 @@
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="Kyj1" jdbcType="VARCHAR" property="Kyj1" />
+    <result column="Kyj2" jdbcType="VARCHAR" property="Kyj2" />
+    <result column="Kyj3" jdbcType="VARCHAR" property="Kyj3" />
   </resultMap>
   <sql id="Base_Column_List">
     BillNO, EntId, BillSn, RfBillNO, RfBillCode, BusinessCode, BusinessName, k_department, 
@@ -307,6 +310,15 @@
       </if>
       <if test="updateDate != null">
         update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="Kyj1 != null">
+        Kyj1 = #{Kyj1,jdbcType=VARCHAR},
+      </if>
+      <if test="Kyj2 != null">
+        Kyj2 = #{Kyj2,jdbcType=VARCHAR},
+      </if>
+      <if test="Kyj3 != null">
+        Kyj3 = #{Kyj3,jdbcType=VARCHAR},
       </if>
     </set>
     where BillNO = #{billno,jdbcType=INTEGER}

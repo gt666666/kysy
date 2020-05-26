@@ -80,11 +80,10 @@ public class TestViews {
         this.kyfkplmtService.insertSelective(7488549,"E1VQBVG2U48");
 
     }
+
     @Test
     public void test4(){
-
-        String admin = new MD5Code().getMD5ofStr("admin");
-        System.out.println(admin);
+        this.kyfkplmtService.updateById("7488549,1,E1VQBVG2U48,不同意;7488549,2,E1VQBVG2U48,同意;7488549,3,E1VQBVG2U48,同意;7488549,4,E1VQBVG2U48,同意;7488549,5,E1VQBVG2U48,同意;7488549,6,E1VQBVG2U48,同意;7488549,7,E1VQBVG2U48,同意","财务总监同意","总经理同意");
     }
 
 

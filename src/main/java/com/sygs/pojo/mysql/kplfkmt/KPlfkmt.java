@@ -10,7 +10,16 @@ import java.util.List;
 
 @Data
 public class KPlfkmt  implements Serializable {
+    private String gs;
+
+    private String deptId;
+
+    private String mobile;
+
+    private Boolean isQushu;
+
     List<Kfkpldt>   kfkpldts;
+
     private Integer billno;
 
     private String entid;

@@ -15,10 +15,14 @@
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+    <result column="is_qushu" jdbcType="TINYINT" property="isQushu" />
+    <result column="cwzj_zyj" jdbcType="VARCHAR" property="cwzjzyj" />
+    <result column="zjl_zyj" jdbcType="VARCHAR" property="zjlzyj" />
   </resultMap>
   <sql id="Base_Column_List">
     BillNO, EntId, status, Dates, StartDate, EndDate, is_bbm, STAFFNAME, sumTaxAmount, 
-    Remark, is_delete, create_date, update_date
+    Remark, is_delete, create_date, update_date,mobile,isQushu
   </sql>
   <select id="selectByPrimaryKey" parameterType="com.sygs.pojo.mysql.kplfkmt.KPlfkmt" resultMap="BaseResultMap">
     select 
@@ -86,6 +90,12 @@
       <if test="updateDate != null">
         update_date,
       </if>
+      <if test="mobile != null">
+        MOBILE,
+      </if>
+      <if test="isQushu != null">
+        is_qushu,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="billno != null">
@@ -127,6 +137,12 @@
       <if test="updateDate != null">
         #{updateDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="isQushu != null">
+        #{isQushu,jdbcType=TINYINT},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.sygs.pojo.mysql.kplfkmt.KPlfkmt">
@@ -164,6 +180,9 @@
       </if>
       <if test="updateDate != null">
         update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isQushu != null">
+        is_qushu = #{isQushu,jdbcType=TINYINT},
       </if>
     </set>
     where BillNO = #{billno,jdbcType=INTEGER}
@@ -225,6 +244,9 @@
       </if>
       <if test="null != updateDate">
          and t.update_date = #{updateDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != isQushu">
+        and t.is_qushu = #{isQushu,jdbcType=LONGVARCHAR}
       </if>
     </trim>
   </sql>

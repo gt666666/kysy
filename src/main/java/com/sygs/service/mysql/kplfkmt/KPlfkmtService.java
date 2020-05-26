@@ -9,6 +9,8 @@ import com.sygs.pojo.mysql.creditadjdt.CreditAdjDt;
 import com.sygs.pojo.mysql.creditadjmt.CreditAdjMt;
 import com.sygs.pojo.mysql.kfkpldt.Kfkpldt;
 
+import com.sygs.pojo.sqlserver.kfkpldt.KfkpldtSql;
+import com.sygs.pojo.sqlserver.kplfkmt.KPlfkmtSql;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +42,8 @@ public class KPlfkmtService {
     private KPlfkmtMapper kPlfkmtMapper;
     @Resource
     private KPlfkmtSqlMapper kPlfkmtSqlMapper;
+
+
     @Resource
     private
     KfkpldtSqlMapper kfkpldtSqlMapper;
@@ -67,6 +71,7 @@ public class KPlfkmtService {
             kPlfkmt.setCreateDate(new DateTime());
             kPlfkmt.setIsDelete(false);
             kPlfkmt.setStatus(false);
+            kPlfkmt.setIsQushu(false);
             this.kPlfkmtMapper.insertSelective(kPlfkmt);   //正常付款申请单批量主表插入
             List<Kfkpldt> kPlfkmtList = this.kfkpldtSqlMapper.viewOaKfkpldt(map);
             for(Kfkpldt kfkpldt:kPlfkmtList){
@@ -101,20 +106,45 @@ public class KPlfkmtService {
          * <p> 创建作者：gaoting </p>
          * <p> 修改作者： </p>
          *
-         * @param record 记录对象
+         * @param
          */
         @Transactional(rollbackFor = Exception.class)
-        public int updateById(KPlfkmt record) {
-            // 先查询，再次修改。记录必须有id才能修改
-            if (Tools.isBlank(record.getBillno())|| Tools.isBlank(record.getBillno())) {
-            throw new FailException(ResultEnum.RECORD_IS_NULL);
+        public void updateById(String resData,String remark1,String remark2,String remark3) {
+            String[] split = resData.split(";");
+            for(String  sp:split){
+                String[] sps= sp.split(",");
+                KPlfkmt  kPlfkmt=new KPlfkmt();
+                kPlfkmt.setBillno(Integer.parseInt((sps[0])));
+                kPlfkmt.setEntid(sps[2]);
+                kPlfkmt.setStatus(true);
+                int i = this.kPlfkmtMapper.updateByPrimaryKeySelective(kPlfkmt);
+
+                Kfkpldt  kfkpldt=new Kfkpldt();
+                kfkpldt.setStatus(true);
+                kfkpldt.setBillno(Integer.parseInt((sps[0])));
+                kfkpldt.setBillsn(Integer.parseInt(sps[1]));
+                kfkpldt.setEntid(sps[2]);
+                int ii = this.kfkpldtMapper.updateByPrimaryKeySelective(kfkpldt);
+                if(i>0&&ii>0){
+                    KfkpldtSql kfkpldtSql=new KfkpldtSql();
+                    kfkpldtSql.setBillno(Integer.parseInt((sps[0])));
+                    kfkpldtSql.setBillsn(Integer.parseInt(sps[1]));
+                    kfkpldtSql.setEntid(sps[2]);
+                    kfkpldtSql.setKyj1(sps[3]);
+                    kfkpldtSql.setKyj2(sps[3]);
+                    this.kfkpldtSqlMapper.updateByPrimaryKeySelective(kfkpldtSql);
+
+                    KPlfkmtSql kPlfkmtSql=new KPlfkmtSql();
+                    kPlfkmtSql.setCwjlzyj(remark1);
+                    kPlfkmtSql.setCwzjzyj(remark2);
+                    kPlfkmtSql.setZjlzyj(remark3);
+                    kPlfkmtSql.setBillno(Integer.parseInt((sps[0])));
+                    kPlfkmtSql.setEntid(sps[2]);
+
+                    this.kPlfkmtSqlMapper.updateByPrimaryKeySelective(kPlfkmtSql);
+                }
             }
-             // 未查询到记录的不能修改
-             KPlfkmt select = this.selectById(record.getBillno(),record.getEntid());
-             if (null == select) {
-             throw new FailException(ResultEnum.RECORD_IS_NULL);
-             }
-             return this.kPlfkmtMapper.updateByPrimaryKeySelective(record);
+            System.err.println(resData+"   "+remark1+"  "+"  "+remark2+"    "+remark3 );
         }
 
         /**
@@ -147,12 +177,17 @@ public class KPlfkmtService {
          * <p> 创建作者：gaoting </p>
          * <p> 修改作者： </p>
          *
-         * @param record 查询对象
+         * @param
          */
-        public List<KPlfkmt> list() {
+        public List<KPlfkmt> listAll() {
             KPlfkmt  kPlfkmt=new KPlfkmt();
             kPlfkmt.setStatus(false);
+            kPlfkmt.setIsQushu(false);
             List<KPlfkmt> kPlfkmtList = this.kPlfkmtMapper.list(kPlfkmt);
+            for(KPlfkmt  kPlfkmt1:kPlfkmtList){
+                    kPlfkmt1.setIsQushu(true);
+                    this.kPlfkmtMapper.updateByPrimaryKeySelective(kPlfkmt1);
+            }
             Kfkpldt  kfkpldt=null;
             for(KPlfkmt kPlfkmt1:kPlfkmtList){
                 kfkpldt=new Kfkpldt();

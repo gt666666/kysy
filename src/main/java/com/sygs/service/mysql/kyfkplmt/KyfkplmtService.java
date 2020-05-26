@@ -8,6 +8,8 @@ import com.sygs.dao.sqlserver.kyfkpldt.KyfkpldtSqlMapper;
 import com.sygs.dao.sqlserver.kyfkplmt.KyfkplmtSqlMapper;
 import com.sygs.pojo.mysql.kyfkhtmx.Kyfkhtmx;
 import com.sygs.pojo.mysql.kyfkpldt.Kyfkpldt;
+import com.sygs.pojo.sqlserver.kyfkpldt.KyfkpldtSql;
+import com.sygs.pojo.sqlserver.kyfkplmt.KyfkplmtSql;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 import com.sygs.config.global.FailException;
@@ -112,6 +114,38 @@ public class KyfkplmtService {
      */
     @Transactional(rollbackFor = Exception.class)
     public String updateById(String resData,String remark1,String remark2) {
+        String[] split = resData.split(";");
+        for(String  sp:split){
+            String[] sps= sp.split(",");
+            Kyfkplmt  kyfkplmt=new Kyfkplmt();
+            kyfkplmt.setBillno(Integer.parseInt((sps[0])));
+            kyfkplmt.setEntid(sps[2]);
+            kyfkplmt.setStatus(true);
+            int i = this.kyfkplmtMapper.updateByPrimaryKeySelective(kyfkplmt);
+
+            Kyfkpldt  kyfkpldt=new Kyfkpldt();
+            kyfkpldt.setStatus(true);
+            kyfkpldt.setBillno(Integer.parseInt((sps[0])));
+            kyfkpldt.setBillsn(Integer.parseInt(sps[1]));
+            kyfkpldt.setEntid(sps[2]);
+            int ii = this.kyfkpldtMapper.updateByPrimaryKeySelective(kyfkpldt);
+            if(i>0&&ii>0){
+                KyfkpldtSql kyfkpldtSql=new KyfkpldtSql();
+                kyfkpldtSql.setBillno(Integer.parseInt((sps[0])));
+                kyfkpldtSql.setBillsn(Integer.parseInt(sps[1]));
+                kyfkpldtSql.setEntid(sps[2]);
+                kyfkpldtSql.setKyj1(sps[3]);
+                kyfkpldtSql.setKyj2(sps[3]);
+                this.kyfkpldtSqlMapper.updateByPrimaryKeySelective(kyfkpldtSql);
+
+                KyfkplmtSql kyfkplmtSql=new KyfkplmtSql();
+                kyfkplmtSql.setCwzjzyj(remark1);
+                kyfkplmtSql.setZjlzyj(remark2);
+                kyfkplmtSql.setBillno(Integer.parseInt((sps[0])));
+                kyfkplmtSql.setEntid(sps[2]);
+                this.kyfkplmtSqlMapper.updateByPrimaryKeySelective(kyfkplmtSql);
+            }
+        }
         System.err.println("resData="+resData+"remark1="+remark1+"remark2="+remark2);
         return   "成功";
         // return this.kyfkplmtMapper.updateByPrimaryKeySelective(record);
@@ -158,12 +192,13 @@ public class KyfkplmtService {
         System.err.println(kyfkplmtsList);
               for( Kyfkplmt   kyfkplmts:kyfkplmtsList){
                   kyfkplmts.setIsQushu(true);
-                  System.err.println("==========");
-                  this.kyfkplmtMapper.updateByPrimaryKeySelective(kyfkplmts);
+                  this.kyfkplmtMapper.updateByPrimaryKeySelective(kyfkplmts);   //取过的数据都修改为1
               }
 
         Kyfkpldt kyfkpldt = null;
         for (Kyfkplmt kyfkplmt1 : kyfkplmtsList) {
+            kyfkplmt1.setGs("昆药集团医药商业有限公司 ");
+            kyfkplmt1.setDeptId("昆商财务部 ");
             kyfkpldt = new Kyfkpldt();
             kyfkpldt.setStatus(false);
             kyfkpldt.setBillno(kyfkplmt1.getBillno());
@@ -179,8 +214,6 @@ public class KyfkplmtService {
                 kyfkplmt1.setKyfkpldts(kyfkpldtList);   //预付款申请汇总单子表
             }
         }
-
-
         return kyfkplmtsList;
     }
 

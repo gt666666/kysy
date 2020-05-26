@@ -51,14 +51,14 @@ public class KPlfkmtController extends AbstractBaseController {
     }
 
 
-    @PostMapping("/updateById")
-    public CommonResult updateById(KPlfkmt record) {
-        int i= this.kPlfkmtService.updateById(record);
-        if (i==1) {
-        return result(ResultEnum.UPDATE_SUCCESS);
-        }
-        return  result(ResultEnum.UPDATE_ERROR);
-    }
+//    @PostMapping("/updateById")
+//    public CommonResult updateById(KPlfkmt record) {
+//        int i= this.kPlfkmtService.updateById(record);
+//        if (i==1) {
+//        return result(ResultEnum.UPDATE_SUCCESS);
+//        }
+//        return  result(ResultEnum.UPDATE_ERROR);
+//    }
 
 
     @GetMapping("/selectById")
@@ -69,7 +69,7 @@ public class KPlfkmtController extends AbstractBaseController {
 
     @GetMapping("/listAll")
     public CommonResult listAll() {
-        return resultData(ResultEnum.SELECT_SUCCESS,this.kPlfkmtService.list());
+        return resultData(ResultEnum.SELECT_SUCCESS,this.kPlfkmtService.listAll());
     }
 
     @GetMapping("/findByQuery")

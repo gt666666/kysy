@@ -23,6 +23,8 @@
     <result column="Remark" jdbcType="LONGVARCHAR" property="remark" />
     <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
     <result column="is_qushu" jdbcType="TINYINT" property="isQushu" />
+    <result column="cwzj_zyj" jdbcType="VARCHAR" property="cwzjzyj" />
+    <result column="zjl_zyj" jdbcType="VARCHAR" property="zjlzyj" />
   </resultMap>
 
   <sql id="Base_Column_List">
@@ -242,31 +244,12 @@
       <if test="isQushu != null">
         is_qushu = #{isQushu,jdbcType=TINYINT},
       </if>
+
     </set>
     where BillNO = #{billno,jdbcType=INTEGER}
       and EntId = #{entid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sygs.pojo.mysql.kyfkplmt.Kyfkplmt">
-    update k_yfkplmt
-    set billcode = #{billcode,jdbcType=VARCHAR},
-      status = #{status,jdbcType=TINYINT},
-      Dates = #{dates,jdbcType=VARCHAR},
-      StartDate = #{startdate,jdbcType=VARCHAR},
-      EndDate = #{enddate,jdbcType=VARCHAR},
-      caozyName = #{caozyname,jdbcType=VARCHAR},
-      sumTaxAmount = #{sumtaxamount,jdbcType=DECIMAL},
-      sumzp = #{sumzp,jdbcType=DECIMAL},
-      sumcd3 = #{sumcd3,jdbcType=VARCHAR},
-      sumdh = #{sumdh,jdbcType=DECIMAL},
-      sumcd6 = #{sumcd6,jdbcType=DECIMAL},
-      STAFFNAME = #{staffname,jdbcType=VARCHAR},
-      is_delete = #{isDelete,jdbcType=TINYINT},
-      create_date = #{createDate,jdbcType=TIMESTAMP},
-      update_date = #{updateDate,jdbcType=TIMESTAMP},
-      Remark = #{remark,jdbcType=LONGVARCHAR}
-    where BillNO = #{billno,jdbcType=INTEGER}
-      and EntId = #{entid,jdbcType=VARCHAR}
-  </update>
+
   <update id="updateByPrimaryKey" parameterType="com.sygs.pojo.mysql.kyfkplmt.Kyfkplmt">
     update k_yfkplmt
     set billcode = #{billcode,jdbcType=VARCHAR},
